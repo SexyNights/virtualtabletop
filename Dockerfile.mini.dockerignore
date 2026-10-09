@@ -1,0 +1,24 @@
+.devcontainer
+.dockerignore
+.editorconfig
+.git
+.gitconfig
+.gitignore
+.github
+.gitpod-init.sh
+.gitpod.yml
+.vscode
+CODEOWNERS
+config.json
+coverage
+jest.config.mjs
+LICENSE
+node_modules
+README.md
+save
+SECURITY.md
+tests
+
+# mini: games は Reversi だけ残す（tutorials はすべて残す）
+library/games/*
+!library/games/Reversi
