@@ -572,7 +572,7 @@ function receiveStateFromServer(args) {
   // a fresh state makes all unconfirmed deltas moot - tell the player when some were reverted
   const changesLost = stateReceived();
   if(changesLost && !isLoading)
-    setStatusMessage('Connection restored. Your last changes could not be saved.', 'link');
+    setStatusMessage('接続が回復しました。直前の変更は保存できませんでした。', 'link');
   refreshConnectionStatus();
 
   if(isLoading) {

@@ -35,8 +35,8 @@ export function setMyName(name) {
 
 function joinNames(names) {
   if(names.length > 3)
-    return `${names.length} players`;
-  return names.length == 1 ? names[0] : names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+    return `${names.length}人のプレイヤー`;
+  return names.length == 1 ? names[0] : names.slice(0, -1).join('、') + 'と' + names[names.length - 1];
 }
 
 function show(el, state, icon, text) {
@@ -60,13 +60,13 @@ function render() {
   }
 
   if(connectionState.state == 'reload')
-    return show(el, 'reload', 'link_off', `No response from server. Reloading the page in ${Math.max(1, Math.ceil(connectionState.msUntilReload / 1000))} seconds.`);
+    return show(el, 'reload', 'link_off', `サーバーから応答がありません。${Math.max(1, Math.ceil(connectionState.msUntilReload / 1000))}秒後にページを再読み込みします。`);
 
   if(reconnecting)
-    return show(el, 'reconnecting', 'link_off', 'Connection lost. Reconnecting...');
+    return show(el, 'reconnecting', 'link_off', '接続が切れました。再接続中...');
 
   if(connectionState.state == 'bad')
-    return show(el, 'bad', 'link_off', 'No response from server.');
+    return show(el, 'bad', 'link_off', 'サーバーから応答がありません。');
   if(connectionState.state == 'warn')
     return show(el, 'warn', 'link_off', '');
 
@@ -76,11 +76,11 @@ function render() {
 
   const inEdit = Object.keys(playerActivity).filter(n=>playerActivity[n].editMode);
   if(inEdit.length)
-    return show(el, 'edit', '[edit_mode]', `${joinNames(inEdit)} ${inEdit.length == 1 ? 'is' : 'are'} in Edit Mode`);
+    return show(el, 'edit', '[edit_mode]', `${joinNames(inEdit)}が編集モードです`);
 
   const inInput = Object.keys(playerActivity).filter(n=>playerActivity[n].activeOverlay == 'buttonInputOverlay');
   if(inInput.length)
-    return show(el, 'input', '[play_arrow]', `${joinNames(inInput)} ${inInput.length == 1 ? 'has' : 'have'} an input window open`);
+    return show(el, 'input', '[play_arrow]', `${joinNames(inInput)}が入力ウィンドウを開いています`);
 
   el.classList.remove('visible');
   el.dataset.state = '';

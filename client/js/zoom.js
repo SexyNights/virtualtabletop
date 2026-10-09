@@ -6,7 +6,7 @@ let zoomLocked = localStorage.getItem('zoomLocked') === 'true';
 function setZoomLevel(zoomLevel) {
   zoomScale = zoomLevel;
   
-  $('#zoom2xButton .tooltip').textContent = `${zoomScale.toFixed(1)}x Zoom`;
+  $('#zoom2xButton .tooltip').textContent = `${zoomScale.toFixed(1)}x ズーム`;
 
   // Update slider to match (convert zoom 1-10 to slider 10-100)
   if($('#zoomSlider'))

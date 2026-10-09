@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="utf-8">
@@ -12,7 +12,7 @@
   <link rel="manifest" href="i/branding/manifest.json">
   <link rel="mask-icon" href="i/branding/mask-icon.svg">
   <meta property="og:title" content=" /*** TITLE ***/ " />
-  <meta property="og:description" content="Come play with me!" />
+  <meta property="og:description" content="一緒に遊ぼう！" />
   <meta property="og:image" content=" /*** EXTERNAL_URL ***/ /i/branding/android-512.png" />
   <base target="_blank">
   <style> /*** CSS ***/ </style>
@@ -24,28 +24,28 @@
   <div id="toolbar">
     <img src="i/branding/logo.svg">
     <div class="divider logoDivider"></div>
-    <button id="statesButton" data-overlay="statesOverlay" class="toolbarButton toolbarTab" ><span class="tooltip">Game Shelf</span></button>
-    <button id="activeGameButton" class="toolbarButton toolbarTab" ><span class="tooltip">Active Game</span></button>
-    <button id="playersButton" data-overlay="playerOverlay" class="toolbarButton toolbarTab" ><span class="tooltip">Players</span></button>
-    <button id="aboutButton" data-overlay="aboutOverlay" class="toolbarButton toolbarTab"><span class="tooltip">About</span></button>
-    <button id="editButton" class="toolbarButton toolbarTab"><span class="tooltip">Edit Mode</span></button>
+    <button id="statesButton" data-overlay="statesOverlay" class="toolbarButton toolbarTab" ><span class="tooltip">個人用ゲームリスト</span></button>
+    <button id="activeGameButton" class="toolbarButton toolbarTab" ><span class="tooltip">進行中のゲーム</span></button>
+    <button id="playersButton" data-overlay="playerOverlay" class="toolbarButton toolbarTab" ><span class="tooltip">プレイヤー</span></button>
+    <button id="aboutButton" data-overlay="aboutOverlay" class="toolbarButton toolbarTab"><span class="tooltip">このサイトについて</span></button>
+    <button id="editButton" class="toolbarButton toolbarTab"><span class="tooltip">編集モード</span></button>
     <div class="spacer"></div>
     <div class="divider"></div>
-    <button id="feedbackButton" class="toolbarButton"><span class="tooltip">Feedback</span></button>
+    <button id="feedbackButton" class="toolbarButton"><span class="tooltip">フィードバック</span></button>
     <div id="optionsAnchor"><div id="options" class="hidden"><button id="muteButton" class="toolbarButton"></button><input id="volume" type="range" min="0" max="100" value="30"></div></div>
-    <button id="optionsButton" class="toolbarButton"><span class="tooltip">Sound</span></button>
-    <button id="lightsButton" class="toolbarButton"><span class="tooltip">Lights</span></button>
+    <button id="optionsButton" class="toolbarButton"><span class="tooltip">サウンド</span></button>
+    <button id="lightsButton" class="toolbarButton"><span class="tooltip">ライト</span></button>
     <div id="zoomAnchor"><div id="zoomControls" class="hidden"><button id="lockZoomButton" class="toolbarButton"></button><input id="zoomSlider" type="range" min="10" max="50" value="10" step="1"></div></div>
-    <button id="zoom2xButton" class="toolbarButton"><span class="tooltip">1x Zoom</span></button>
-    <button id="fullscreenButton" class="toolbarButton"><span class="tooltip">Fullscreen</span></button>
-    <button id="hideToolbarButton" class="toolbarButton"><span class="tooltip">Hide Toolbar</span></button>
+    <button id="zoom2xButton" class="toolbarButton"><span class="tooltip">1.0x ズーム</span></button>
+    <button id="fullscreenButton" class="toolbarButton"><span class="tooltip">全画面表示</span></button>
+    <button id="hideToolbarButton" class="toolbarButton"><span class="tooltip">ツールバーを隠す</span></button>
   </div>
 
-  <button id="showToolbarButton" icon="chevron_right" title="Show Toolbar" aria-label="Show Toolbar"></button>
+  <button id="showToolbarButton" icon="chevron_right" title="ツールバーを表示" aria-label="ツールバーを表示"></button>
 
   <div id="roomArea">
     <div id="room">
-      <div id="topSurface" class="surface"><h1 id="loadingRoomIndicator">Loading room...</h1></div>
+      <div id="topSurface" class="surface"><h1 id="loadingRoomIndicator">ルームを読み込み中...</h1></div>
     </div>
     <div id="statusOverlay" data-state="">
       <span class="statusIcon" icon="hourglass_empty"></span>
@@ -61,14 +61,14 @@
     </div>
 
     <div id="askIDoverlay" class="overlay">
-      <p>Please enter an ID and ask your friend to enter the same one:</p>
+      <p>IDを入力し、対戦相手にも同じIDを入力してもらってください:</p>
       <input id="enteredID">
-      <button>▶️ Play</button>
+      <button>▶️ プレイ</button>
     </div>
 
     <div id="buttonInputOverlay" class="overlay">
       <div class="modal">
-        <h1>Button Input</h1>
+        <h1>ボタン入力</h1>
         <div id="buttonInputFields"></div>
         <div class="footer">
           <button id="buttonInputGo" class="positiveInput"><span class="UIicon"></span><label></label></button>
@@ -79,24 +79,24 @@
 
     <div id="inputBlockOverlay" class="overlay">
       <div class="modal">
-        <h1>Waiting on other players</h1>
+        <h1>他のプレイヤーを待っています</h1>
         <div id="inputBlockText"></div>
-        <div id="inputBlockGuidance">No action required. Pressing the Cancel button will force close the input for everyone and all choices will be lost.</div>
+        <div id="inputBlockGuidance">操作は不要です。キャンセルボタンを押すと、全員の入力が強制的に閉じられ、すべての選択内容が失われます。</div>
         <div class="footer">
-          <button id="inputBlockCancel" class="neutralInput"><span class="UIicon"></span><label>Cancel</label></button>
+          <button id="inputBlockCancel" class="neutralInput"><span class="UIicon"></span><label>キャンセル</label></button>
         </div>
       </div>
     </div>
 
     <div id="playerOverlay" class="overlay">
       <div class="heading">
-        <h1>Players</h1>
+        <h1>プレイヤー</h1>
       </div>
       <div id="playerList">
         <template id="template-playerlist-player" type="text/template">
           <td class="playerColorCell">
             <span class="teamColorWrap">
-              <input type="color" class="teamColor" title="Change player color">
+              <input type="color" class="teamColor" title="プレイヤーの色を変更">
               <i class="material-symbols teamColorIcon">person</i>
             </span>
           </td>
@@ -104,9 +104,9 @@
             <input class="playerName" />
           </td>
           <td class="playerActionsCell">
-            <button icon="edit" class="renamePlayer" title="Rename this player and update all references to it in the game"></button>
-            <button icon="visibility" class="viewPlayer" title="View the game as this player: only this browser tab switches over and the game stays unchanged"></button>
-            <button icon="delete" class="removePlayer" title="Remove this player"></button>
+            <button icon="edit" class="renamePlayer" title="このプレイヤーの名前を変更し、ゲーム内の参照もすべて更新します"></button>
+            <button icon="visibility" class="viewPlayer" title="このプレイヤーとしてゲームを表示します。切り替わるのはこのブラウザタブだけで、ゲーム自体は変わりません"></button>
+            <button icon="delete" class="removePlayer" title="このプレイヤーを削除"></button>
           </td>
         </template>
         <template id="template-playerlist-session" type="text/template">
@@ -116,73 +116,73 @@
         </template>
         <table id="playersTable">
           <thead>
-            <tr><th></th><th>Player</th><th></th><th title="Every browser tab that has this room open is one connection of a player">Connections</th></tr>
+            <tr><th></th><th>プレイヤー</th><th></th><th title="このルームを開いているタブが、プレイヤーのルームになります">接続</th></tr>
           </thead>
           <tbody></tbody>
           <tfoot>
             <tr id="addPlayerRow">
               <td class="playerColorCell"><span class="teamColorWrap"><i class="material-symbols">person_add</i></span></td>
-              <td class="playerNameCell"><input id="localPlayerName" class="playerName" placeholder="Add a player who shares this device" /></td>
-              <td class="playerActionsCell" colspan="2"><button icon="add" id="addLocalPlayerButton" title="Add a player who shares this device"></button></td>
+              <td class="playerNameCell"><input id="localPlayerName" class="playerName" placeholder="この端末を共有するプレイヤーを追加" /></td>
+              <td class="playerActionsCell" colspan="2"><button icon="add" id="addLocalPlayerButton" title="この端末を共有するプレイヤーを追加"></button></td>
             </tr>
             <tr id="invitePlayerRow">
               <td class="playerColorCell"><span class="teamColorWrap"><i class="material-symbols">group_add</i></span></td>
-              <td class="playerNameCell"><span id="playerInviteText">Invite players to <span id="playerInviteURL"></span></span><span id="playerInviteStatus"></span></td>
-              <td class="playerActionsCell" colspan="2"><button icon="share" id="playersShareButton" title="Share the room URL so other players can join"></button></td>
+              <td class="playerNameCell"><span id="playerInviteText"><span id="playerInviteURL"></span> にプレイヤーを招待</span><span id="playerInviteStatus"></span></td>
+              <td class="playerActionsCell" colspan="2"><button icon="share" id="playersShareButton" title="ルームのURLを共有して、他のプレイヤーが参加できるようにします"></button></td>
             </tr>
           </tfoot>
         </table>
       </div>
       <details id="playersHelp" class="playersHelp">
-        <summary>Help: playing together</summary>
+        <summary>ヘルプ: オンラインで使うには</summary>
         <div class="helpContent">
           <div class="helpTopic">
             <i class="material-symbols">groups</i>
             <div>
-              <h2>Players and connections</h2>
-              <p>Every browser tab that has this room open is one connection of a player. Edit the name and color of any player, view the game as another player or add a local player that shares this device. While you have this room open in more than one tab, adding a player switches the current tab to them, so every tab can be its own player.</p>
+              <h2>プレイヤーとルーム</h2>
+              <p>このルームを開いているタブのURLが、プレイヤーのルームになります。プレイヤーの名前や色を編集したり、別のプレイヤーとしてゲームを表示したり、この端末を共有するローカルプレイヤーを追加したりできます。このルームを複数のタブで開いている場合、プレイヤーを追加すると現在のタブがそのプレイヤーに切り替わるので、タブごとに別のプレイヤーとして遊べます。</p>
             </div>
           </div>
           <div class="helpTopic">
             <i class="material-symbols">share</i>
             <div>
-              <h2>Remote play</h2>
-              <p>Everybody plays on their own device: send them the room URL with the <i class="material-symbols">share</i> button in the table above and they join this table as soon as they open it. Their browser tab shows up here as a connection and they can pick their name and color in the table.</p>
+              <h2>リモートプレイ</h2>
+              <p>全員がそれぞれの端末で遊びます。上の表の <i class="material-symbols">share</i> ボタンでルームのURLを送ると、相手がそれを開いた時点で同じルームに参加できます。相手のタブはこのルームに接続しているとして表示され、表の中で名前と色を選べます。</p>
             </div>
           </div>
           <div class="helpTopic">
             <i class="material-symbols">swap_horizontal_circle</i>
             <div>
-              <h2>Hotseat</h2>
-              <p>Several people share one device: add each of them with the <i class="material-symbols">person_add</i> row of the table, then use the <i class="material-symbols">visibility</i> button to switch this browser tab to whoever's turn it is. Only this browser tab switches over, the game itself stays untouched.</p>
+              <h2>ホットシート（1台を共有）</h2>
+              <p>複数人で1台の端末を共有する場合は、表の <i class="material-symbols">person_add</i> の行でそれぞれを追加し、<i class="material-symbols">visibility</i> ボタンで手番のプレイヤーにタブを切り替えます。切り替わるのはタブだけで、ゲーム自体は変わりません。</p>
             </div>
           </div>
         </div>
       </details>
       <details id="playersButtonHelp" class="playersHelp">
-        <summary>Help: what the buttons do</summary>
+        <summary>ヘルプ: ボタンの説明</summary>
         <div class="helpContent">
           <ul>
-            <li><i class="material-symbols">edit</i>Rename the player everywhere in the game</li>
-            <li><i class="material-symbols">visibility</i>View the game as this player - greyed out while they are connected and playing</li>
-            <li><i class="material-symbols">delete</i>Remove this player from the list - only shown while they are not connected, and asking first if parts of the game still belong to them</li>
-            <li><i class="material-symbols">add</i>Add a player who shares this device</li>
-            <li><i class="material-symbols">share</i>Share the room URL so other players can join</li>
+            <li><i class="material-symbols">edit</i>ゲーム内のあらゆる場所でプレイヤー名を変更します</li>
+            <li><i class="material-symbols">visibility</i>このプレイヤーとしてゲームを表示します（接続中でプレイしている間はグレー表示になります）</li>
+            <li><i class="material-symbols">delete</i>このプレイヤーを一覧から削除します（未接続のときだけ表示され、ゲームの一部がそのプレイヤーのものである場合は先に確認します）</li>
+            <li><i class="material-symbols">add</i>この端末を共有するプレイヤーを追加します</li>
+            <li><i class="material-symbols">share</i>ルームのURLを共有して、他のプレイヤーが参加できるようにします</li>
           </ul>
         </div>
       </details>
     </div>
 
     <div id="returnOverlay" class="overlay">
-      <p>In order to switch games, please return to the main server:</p>
-      <button>Return</button>
+      <p>ゲームを切り替えるには、メインサーバーに戻ってください:</p>
+      <button>戻る</button>
     </div>
 
     <div id="statesOverlay" class="overlay">
       <div id="stateFilters">
         <span id="filterByTextWrapper" data-priority="1">
           <i class="material-symbols">search</i>
-          <input id="filterByText" name="filterByText" placeholder="Search" />
+          <input id="filterByText" name="filterByText" placeholder="検索" />
           <i class="material-symbols" id="clearSearch">close</i>
         </span>
         <span id="filterByTypeWrapper" data-priority="6" class="hidden" aria-hidden="true">
@@ -190,7 +190,7 @@
         </span>
         <span id="filterByPlayersWrapper" data-priority="2">
           <i class="material-symbols">person</i>
-          <select id="filterByPlayers"><option>Any</option>
+          <select id="filterByPlayers"><option value="Any">指定なし</option>
             <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
             <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
             <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
@@ -199,8 +199,8 @@
         </span>
         <span id="filterByDurationWrapper" data-priority="7">
           <i class="material-symbols">schedule</i>
-          <select id="filterByDuration"><option>Any</option>
-            <option value="0-30">&lt;= 30 min</option><option value="31-60">30-60 min</option><option value="61-999">&gt; 60 min</option>
+          <select id="filterByDuration"><option value="Any">指定なし</option>
+            <option value="0-30">30分以下</option><option value="31-60">30〜60分</option><option value="61-999">60分超</option>
           </select>
         </span>
         <span id="filterByLanguageWrapper" data-priority="5">
@@ -214,14 +214,14 @@
         <span id="filterByAiWrapper" data-priority="8">
           <i class="material-symbols">auto_awesome</i>
           <select id="filterByAi">
-            <option>Any</option>
-            <option value="no-ai">Made without AI</option>
-            <option value="ai">Made with AI</option>
+            <option value="Any">指定なし</option>
+            <option value="no-ai">AIを使用していない</option>
+            <option value="ai">AIを使用</option>
           </select>
         </span>
         <span id="librarySortWrapper" data-priority="3">
           <i class="material-symbols">sort_by_alpha</i>
-          <select id="librarySort"><option value="name">by Name</option><option value="similarName">by Similar Name</option><option value="stars">by Stars</option><option value="timePlayed">by Popularity</option><option value="lastUpdate">by Last Updated</option><option value="year">by Year</option></select>
+          <select id="librarySort"><option value="name">名前順</option><option value="similarName">類似ゲーム名順</option><option value="stars">スター順</option><option value="timePlayed">人気順</option><option value="lastUpdate">更新日順</option><option value="year">発売年順</option></select>
         </span>
         <div id="filterOverflow"><button icon="more_horiz"></button><div></div></div>
       </div>
@@ -235,62 +235,62 @@
           <img>
           <button icon="star_rate" class="star"></button>
           <i class="material-symbols linked">link</i>
-          <i class="material-symbols importNotes" title="This game was imported - the game details list what could not be translated">info</i>
-          <span class="ai-badge" title="Uses AI generated content">AI</span>
+          <i class="material-symbols importNotes" title="このゲームはインポートされたものです。変換できなかった内容はゲーム詳細に記載されています">info</i>
+          <span class="ai-badge" title="AI生成コンテンツを使用">AI</span>
           <div class="details">
             <h3>Name</h3>
             <h4>Similar Name</h4>
           </div>
         </template>
-        <button icon="fast_forward" id="updateSaveState">Update loaded game</button>
-        <button icon="save" id="saveState">Save active game</button>
-        <button icon="add" id="addState">Add game</button>
-        <p id="emptyLibrary">Your personal game library is currently empty.<br>Use the stars below to pin public library games, use the "Add game" button above or drag VTT files here.</p>
-        <p id="emptyLibraryByFilter">No games displayed.<br>Adjust the filters above to show them.</p>
+        <button icon="fast_forward" id="updateSaveState">読み込み中のゲームを更新</button>
+        <button icon="save" id="saveState">進行中のゲームを保存</button>
+        <button icon="add" id="addState">ゲームを追加</button>
+        <p id="emptyLibrary">個人用ゲームリストには何も保存されていません。<br>公開ライブラリ内のゲームを選ぶか、画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。<br>公開ライブラリ内にあるゲームサムネイル左上には☆マークがあります。この☆マークをクリックするとお気に入りとして登録されます</p>
+        <p id="emptyLibraryByFilter">表示するゲームがありません。<br>上のフィルターを調整してください。</p>
         <!--<button class="prettyButton gameMenu download">Download all</button>-->
       </div>
     </div>
 
     <div id="stateAddOverlay" class="overlay">
       <div class="titleWithCloseButton">
-        <h1>Add game</h1>
+        <h1>ゲームを追加</h1>
         <button icon="close"></button>
       </div>
       <div>
         <div icon="upload">
-          <p>Upload VTT or PCIO files you downloaded from the web.</p>
-          <p>You can find compatible game files on <a href="https://boardgamegeek.com/geeklist/272690/games-implemented-playingcardsio">a boardgamegeek.com geeklist</a>,
-          <a href="https://www.reddit.com/r/PlayingCardsIO/">the PlayingCardsIO subreddit</a>,
-          <a href="https://www.notion.so/4d27ed5a430d422b99b3fa21b66714e6">its notion.so database</a> or
-          <a href="https://github.com/search?utf8=%E2%9C%93&amp;q=playingcards.io">GitHub</a>.</p>
-          <p>Please note that PCIO files might not be 100% compatible. Please <a href="https://github.com/ArnoldSmith86/virtualtabletop/issues/new">open an issue on GitHub</a> if a file is unplayable.</p>
-          <button icon="upload">Upload files</button>
+          <p>ウェブからダウンロードしたVTTまたはPCIOファイルをアップロードします。</p>
+          <p>対応するゲームファイルは、<a href="https://boardgamegeek.com/geeklist/272690/games-implemented-playingcardsio">boardgamegeek.com のジオリスト</a>、
+          <a href="https://www.reddit.com/r/PlayingCardsIO/">PlayingCardsIO のサブレディット</a>、
+          <a href="https://www.notion.so/4d27ed5a430d422b99b3fa21b66714e6">notion.so のデータベース</a>、または
+          <a href="https://github.com/search?utf8=%E2%9C%93&amp;q=playingcards.io">GitHub</a> で見つかります。</p>
+          <p>PCIOファイルは完全には互換でない場合があります。遊べないファイルがあれば、<a href="https://github.com/ArnoldSmith86/virtualtabletop/issues/new">GitHub でIssueを作成</a>してください。</p>
+          <button icon="upload">ファイルをアップロード</button>
         </div>
         <div icon="link">
-          <p>If you have a direct link to a VTT or PCIO file (for example by sharing a link from virtualtabletop.io), you can add the game using the link and you will always play the latest version.<br><br>You can also enter a Tabletop Simulator workshop link in order to import the widgets from it, but the imported game will not have any automation.</p>
+          <p>VTTまたはPCIOファイルへの直接リンク（たとえば virtualtabletop.io で共有したリンク）があれば、そのリンクからゲームを追加でき、常に最新版で遊べます。<br><br>Tabletop Simulator のワークショップリンクを入力してウィジェットをインポートすることもできますが、インポートしたゲームに自動化機能はありません。</p>
           <input placeholder="URL">
-          <button icon="link">Add link</button>
+          <button icon="link">リンクを追加</button>
         </div>
         <div icon="save">
-          <p>Use the current state of this room as a new game.</p>
-          <p>This is usually used when using Edit Mode to create a new game from scratch.</p>
-          <button icon="save">Save room state</button>
+          <p>このルームの現在の状態を新しいゲームとして使います。</p>
+          <p>通常は、編集モードでゼロからゲームを作るときに使います。</p>
+          <button icon="save">ルームの状態を保存</button>
         </div>
       </div>
     </div>
 
     <div id="stateSaveOverlay" class="overlay">
       <div class="titleWithCloseButton">
-        <h1>Save game</h1>
+        <h1>ゲームを保存</h1>
         <button icon="close"></button>
       </div>
       <div>
         <div icon="save">
-          <p>This creates a save state of the currently active game so that you can start a different game and come back to this one later. For creating or editing, use the "+Add Game" button or sidebar hamburger icon "Edit" button.</p>
-          <p>Notes: <input></p>
+          <p>進行中のゲームのセーブデータを作成します。別のゲームを始めても、あとでこのゲームに戻れます。ゲームの作成や編集には、「ゲームを追加」ボタンかサイドバーの「編集」ボタンを使ってください。</p>
+          <p>メモ: <input></p>
           <div class="buttons">
-            <button icon="undo">Cancel</button>
-            <button icon="save">Save game</button>
+            <button icon="undo">キャンセル</button>
+            <button icon="save">ゲームを保存</button>
           </div>
         </div>
       </div>
@@ -298,23 +298,23 @@
 
     <div id="variantAddOverlay" class="overlay">
       <div class="titleWithCloseButton">
-        <h1>Add variant</h1>
+        <h1>バリアントを追加</h1>
         <button icon="close"></button>
       </div>
       <div>
         <div icon="save">
-          <p>The most common use-case for adding new variants to a game is when you are actually editing it.</p>
-          <p>This button will take the current state of this room and it as a new variant.</p>
-          <button icon="save">Save room state</button>
+          <p>バリアントを追加するのは、ほとんどの場合ゲームを編集しているときです。</p>
+          <p>このボタンは、このルームの現在の状態を新しいバリアントとして追加します。</p>
+          <button icon="save">ルームの状態を保存</button>
         </div>
         <div icon="upload">
-          <p>If you have a VTT or PCIO file, you can add their variants as new variants here.</p>
-          <button icon="upload">Upload files</button>
+          <p>VTTまたはPCIOファイルがあれば、そのバリアントを新しいバリアントとしてここに追加できます。</p>
+          <button icon="upload">ファイルをアップロード</button>
         </div>
         <div icon="link">
-          <p>You can add a variant from the public library to your game in case you want to combine different games into one or if you want to change the game metadata.</p>
+          <p>複数のゲームを1つにまとめたい場合や、ゲームのメタデータを変更したい場合は、公開ライブラリのバリアントを自分のゲームに追加できます。</p>
           <select></select>
-          <button icon="link">Link to public library</button>
+          <button icon="link">公開ライブラリにリンク</button>
         </div>
       </div>
     </div>
@@ -322,22 +322,22 @@
     <div id="stateDetailsOverlay" class="overlay notEditing">
       <div class="buttons one">
         <button icon="close" class="hideForEdit" id="closeDetails"></button>
-        <button icon="close" class="onlyForEdit red" id="discardDetails">Discard changes</button>
+        <button icon="close" class="onlyForEdit red" id="discardDetails">変更を破棄</button>
       </div>
       <div class="buttons two">
         <button icon="menu" class="hideForEdit"></button>
         <div class="hidden hideForEdit">
-          <button icon="settings">Convert to game</button>
-          <button icon="download">Download</button>
-          <button icon="link">Share link</button>
-          <button icon="link_off">Unlink</button>
-          <button icon="edit_off" disabled>Read-only</button>
-          <button icon="edit">Edit</button>
-          <button icon="delete" class="red">Delete</button>
+          <button icon="settings">ゲームに変換</button>
+          <button icon="download">ダウンロード</button>
+          <button icon="link">リンクを共有</button>
+          <button icon="link_off">リンク解除</button>
+          <button icon="edit_off" disabled>読み取り専用</button>
+          <button icon="edit">編集</button>
+          <button icon="delete" class="red">削除</button>
           <div id="publicLibraryUploadButtons" class="hidden"></div>
         </div>
-        <button icon="save" class="onlyForEdit green">Save</button>
-        <button icon="upload" class="onlyForEdit" disabled>Uploading</button>
+        <button icon="save" class="onlyForEdit green">保存</button>
+        <button icon="upload" class="onlyForEdit" disabled>アップロード中</button>
       </div>
       <div id="mainDetails">
         <div id="mainImage">
@@ -345,18 +345,18 @@
           <button icon="star_rate" class="star"></button>
           <span data-field="stars" class="uneditable">0</span>
           <i class="material-symbols">link</i>
-          <span class="ai-badge hideForEdit" data-showfor="usesAIImagery|usesAILayout" title="Uses AI generated content">AI</span>
+          <span class="ai-badge hideForEdit" data-showfor="usesAIImagery|usesAILayout" title="AI生成コンテンツを使用">AI</span>
           <div class="onlyForEdit">
-            <button icon="image" data-field="image" data-target="value" data-forceshow="true">Change</button>
+            <button icon="image" data-field="image" data-target="value" data-forceshow="true">変更</button>
           </div>
         </div>
         <div class="details">
           <h1 data-field="name"></h1>
-          <div class="onlyForEdit"><input type="checkbox" id="showName"> <label for="showName">Overlay name</label></div>
-          <div data-showfor="time"><i class="material-symbols">schedule</i> Time: <span data-field="time"></span> minutes</div>
-          <div data-showfor="mode"><i class="material-symbols">groups</i> Mode: <span data-field="mode"></span></div>
-          <div data-showfor="skill"><i class="material-symbols">psychology</i> Skill: <span data-field="skill"></span></div>
-          <p data-field="description" data-placeholder="&lt;empty game description&gt;"></p>
+          <div class="onlyForEdit"><input type="checkbox" id="showName"> <label for="showName">名前を重ねて表示</label></div>
+          <div data-showfor="time"><i class="material-symbols">schedule</i> 所要時間: <span data-field="time"></span>分</div>
+          <div data-showfor="mode"><i class="material-symbols">groups</i> モード: <span data-field="mode"></span></div>
+          <div data-showfor="skill"><i class="material-symbols">psychology</i> スキル: <span data-field="skill"></span></div>
+          <p data-field="description" data-placeholder="&lt;ゲームの説明がありません&gt;"></p>
         </div>
       </div>
       <template id="template-variantslist-entry" type="text/template">
@@ -369,43 +369,43 @@
         <div class="variant-name" data-field="variant" data-forceshow="true"></div>
         <div class="language-info" data-showfor="language"><i class="material-symbols">language</i><span data-field="language"></span></div>
         <div class="player-number-info" data-showfor="players"><i class="material-symbols">person</i><span data-field="players"></span></div>
-        <button icon="play_arrow" class="hideForEdit">Play</button>
-        <button icon="edit" class="onlyForEdit">Edit</button>
+        <button icon="play_arrow" class="hideForEdit">プレイ</button>
+        <button icon="edit" class="onlyForEdit">編集</button>
         <div class="variantEdit">
-          <button icon="save">Update from Active Game</button>
-          <button icon="north">Move up</button>
-          <button icon="south">Move down</button>
-          <button icon="delete" class="red">Delete</button>
+          <button icon="save">進行中のゲームから更新</button>
+          <button icon="north">上へ</button>
+          <button icon="south">下へ</button>
+          <button icon="delete" class="red">削除</button>
         </div>
       </template>
       <div id="variantsList">
         <div class="variantsList"></div>
-        <p id="emptyVariants">This game has no variants left. Variants are the different setups of a game - a game needs at least one of them to be playable.<span class="onlyForEdit"><br>Add one below, or save to remove the game from your game shelf.</span></p>
-        <button icon="add" class="onlyForEdit">Add variant</button>
+        <p id="emptyVariants">このゲームにはバリアントが残っていません。バリアントとはゲームのさまざまなセットアップのことで、プレイできるようにするには少なくとも1つ必要です。<span class="onlyForEdit"><br>下から追加するか、保存してゲームを個人用ゲームリストから削除してください。</span></p>
+        <button icon="add" class="onlyForEdit">バリアントを追加</button>
       </div>
       <div id="similarDetails" data-showfor="similarImage|similarName|similarDesigner|similarAwards|bgg|rules">
         <div id="similarImage">
           <img data-field="similarImage" data-target="src" class="uneditable">
           <div class="onlyForEdit">
-            <button icon="image" data-field="similarImage" data-target="value" data-forceshow="true">Change</button>
+            <button icon="image" data-field="similarImage" data-target="value" data-forceshow="true">変更</button>
           </div>
         </div>
         <div class="details">
-          <h1 data-showfor="similarName">Similar to: <span data-field="similarName"></span><span data-showfor="year"> (<span data-field="year"></span>)</span></h1>
-          <div class="onlyForEdit"><input type="checkbox" id="showNameSimilar"> <label for="showNameSimilar">Overlay &quotsimilar to&quot name</label></div>
-          <div data-showfor="similarDesigner"><i class="material-symbols">person</i> Designer: <span data-field="similarDesigner"></span></div>
+          <h1 data-showfor="similarName">類似ゲーム: <span data-field="similarName"></span><span data-showfor="year"> (<span data-field="year"></span>)</span></h1>
+          <div class="onlyForEdit"><input type="checkbox" id="showNameSimilar"> <label for="showNameSimilar">「類似ゲーム」の名前を重ねて表示</label></div>
+          <div data-showfor="similarDesigner"><i class="material-symbols">person</i> デザイナー: <span data-field="similarDesigner"></span></div>
           <div data-showfor="similarAwards" class="hideForEdit"><i class="material-symbols">emoji_events</i> <span data-field="similarAwards"></span></div>
-          <div class="onlyForEdit"><i class="material-symbols">emoji_events</i> Awards: <span data-field="similarAwards"></span></div>
-          <div data-showfor="bgg" class="hideForEdit"><i class="material-symbols">info</i> <a data-field="bgg" data-target="href">Game details on <nobr><i class="material-symbols intext">launch</i> <span id="similarDetailsDomain"></span></nobr></a></div>
-          <div class="onlyForEdit"><i class="material-symbols">info</i> Game details link: <span data-field="bgg"></span></div>
-          <div data-showfor="rules" class="hideForEdit"><i class="material-symbols">auto_stories</i> <a data-field="rules" data-target="href">Rules overview on <nobr><i class="material-symbols intext">launch</i> <span id="similarRulesDomain"></span></nobr></a></div>
-          <div class="onlyForEdit"><i class="material-symbols">auto_stories</i> Rules overview link: <span data-field="rules"></span></div>
+          <div class="onlyForEdit"><i class="material-symbols">emoji_events</i> 受賞歴: <span data-field="similarAwards"></span></div>
+          <div data-showfor="bgg" class="hideForEdit"><i class="material-symbols">info</i> <a data-field="bgg" data-target="href"><nobr><i class="material-symbols intext">launch</i> <span id="similarDetailsDomain"></span></nobr> のゲーム詳細</a></div>
+          <div class="onlyForEdit"><i class="material-symbols">info</i> ゲーム詳細リンク: <span data-field="bgg"></span></div>
+          <div data-showfor="rules" class="hideForEdit"><i class="material-symbols">auto_stories</i> <a data-field="rules" data-target="href"><nobr><i class="material-symbols intext">launch</i> <span id="similarRulesDomain"></span></nobr> のルール概要</a></div>
+          <div class="onlyForEdit"><i class="material-symbols">auto_stories</i> ルール概要リンク: <span data-field="rules"></span></div>
         </div>
       </div>
       <div id="prevState" class="roomState hideForEdit">
         <img>
         <div class="details">
-          <h3>Previous</h3>
+          <h3>前へ</h3>
           <h4>Similar to Previous</h4>
         </div>
         <button class="prettyButton prev"><i class="material-symbols">arrow_back</i></button>
@@ -413,50 +413,50 @@
       <div id="nextState" class="roomState hideForEdit">
         <img>
         <div class="details">
-          <h3>Next</h3>
+          <h3>次へ</h3>
           <h4>Similar to Next</h4>
         </div>
         <button class="prettyButton next"><i class="material-symbols">arrow_forward</i></button>
       </div>
       <div id="helpTexts" data-showfor="ruleText|helpText|attribution|usesAIImagery|usesAILayout|importerWarnings">
-        <h3 data-showfor="importerWarnings" id="importNotesHeading">Import notes</h3>
+        <h3 data-showfor="importerWarnings" id="importNotesHeading">インポートに関する注記</h3>
         <ul data-showfor="importerWarnings" id="importNotes"></ul>
-        <h3 data-showfor="ruleText">How to play the game</h3>
+        <h3 data-showfor="ruleText">遊び方</h3>
         <div data-field="ruleText" data-html="true"></div>
-        <h3 data-showfor="helpText">How to use this implementation</h3>
+        <h3 data-showfor="helpText">このゲームデータの使い方</h3>
         <div data-field="helpText" data-html="true"></div>
-        <h3 data-showfor="attribution">Attribution</h3>
+        <h3 data-showfor="attribution">クレジット・権利表示</h3>
         <div data-field="attribution" data-html="true"></div>
-        <div class="onlyForEdit" style="margin-top: 12px;"><input type="checkbox" id="usesAIImagery" data-field="usesAIImagery" data-target="checked"> <label for="usesAIImagery">Uses AI generated imagery</label></div>
-        <div class="onlyForEdit"><input type="checkbox" id="usesAILayout" data-field="usesAILayout" data-target="checked"> <label for="usesAILayout">Heavy use of AI for the layout</label></div>
+        <div class="onlyForEdit" style="margin-top: 12px;"><input type="checkbox" id="usesAIImagery" data-field="usesAIImagery" data-target="checked"> <label for="usesAIImagery">AI生成画像を使用</label></div>
+        <div class="onlyForEdit"><input type="checkbox" id="usesAILayout" data-field="usesAILayout" data-target="checked"> <label for="usesAILayout">レイアウトにAIを多用</label></div>
         <div class="hideForEdit ai-notice" data-showfor="usesAIImagery">
           <i class="material-symbols">auto_awesome</i>
-          <span>This game uses AI generated imagery.</span>
+          <span>このゲームはAI生成画像を使用しています。</span>
         </div>
         <div class="hideForEdit ai-notice" data-showfor="usesAILayout">
           <i class="material-symbols">auto_awesome</i>
-          <span>This game was built with heavy use of AI for its layout.</span>
+          <span>このゲームはレイアウトの作成にAIを多用しています。</span>
         </div>
       </div>
     </div>
 
     <div id="updateImageOverlay" class="overlay">
-      <h1>Update image</h1>
+      <h1>画像を更新</h1>
       <div>
         <div id="updatePreviousImage">
-          <h2>Previous image</h2>
+          <h2>これまでの画像</h2>
           <img class="previous">
         </div>
         <div id="updateCurrentImage">
-          <h2>New image<button icon="upload">Upload</button></h2>
+          <h2>新しい画像<button icon="upload">アップロード</button></h2>
           <img class="current">
-          <label for="updateImageURL">Enter custom URL:</label> <input class="current" id="updateImageURL">
+          <label for="updateImageURL">URLを入力:</label> <input class="current" id="updateImageURL">
         </div>
       </div>
       <div id="updateButtonBar">
-        <button icon="undo">Use previous image</button>
-        <button icon="image_not_supported">Use no image</button>
-        <button icon="check">Use new image</button>
+        <button icon="undo">これまでの画像を使う</button>
+        <button icon="image_not_supported">画像なしにする</button>
+        <button icon="check">新しい画像を使う</button>
       </div>
     </div>
 
@@ -478,19 +478,19 @@
 
     <div id="shareLinkOverlay" class="overlay">
       <div class="titleWithCloseButton">
-        <h1>Share link</h1>
+        <h1>リンクを共有</h1>
         <button icon="close"></button>
       </div>
       <div>
         <div icon="link">
-          <p class="customGameInfo">You can share this link with others so they can add your game to their library.</p>
-          <p class="customGameInfo">The link does not expire.</p>
-          <p class="customGameInfo">Keep in mind that you change their game whenever you change this game in your library.</p>
-          <p class="customGameInfo">Saved in-progress games are not included and will stay private to your room.</p>
-          <p class="customGameInfo">There is no way for people with this link to find your room.</p>
-          <p class="plGameInfo">Use this link to tell your friends about this specific game in the public library.</p>
-          <input id="sharedLink" value="Loading link..."/>
-          <button icon="share">Share</button>
+          <p class="customGameInfo">このリンクを共有すると、相手があなたのゲームを自分のライブラリに追加できます。</p>
+          <p class="customGameInfo">リンクに有効期限はありません。</p>
+          <p class="customGameInfo">ライブラリ内でこのゲームを変更すると、相手のゲームも変更される点に注意してください。</p>
+          <p class="customGameInfo">保存された進行中のゲームは含まれず、あなたのルームだけに残ります。</p>
+          <p class="customGameInfo">このリンクを知っていても、あなたのルームを見つける方法はありません。</p>
+          <p class="plGameInfo">このリンクで、公開ライブラリにあるこのゲームを他の方へ紹介できます。</p>
+          <input id="sharedLink" value="リンクを読み込み中..."/>
+          <button icon="share">共有</button>
         </div>
       </div>
     </div>
@@ -505,40 +505,40 @@
           <button icon="star_rate" class="star"></button>
           <span data-field="stars" class="uneditable">0</span>
           <i class="material-symbols">link</i>
-          <span class="ai-badge" data-showfor="usesAIImagery|usesAILayout" title="Uses AI generated content">AI</span>
+          <span class="ai-badge" data-showfor="usesAIImagery|usesAILayout" title="AI生成コンテンツを使用">AI</span>
         </div>
         <div class="details">
           <h1 data-field="name"></h1>
-          <h2 data-showfor="similarName">Similar to: <span data-field="similarName"></span><span data-showfor="year"> (<span data-field="year"></span>)</span></h2>
-          <div data-showfor="time"><i class="material-symbols">schedule</i> Time: <span data-field="time"></span> minutes</div>
-          <div data-showfor="mode"><i class="material-symbols">groups</i> Mode: <span data-field="mode"></span></div>
-          <div data-showfor="skill"><i class="material-symbols">psychology</i> Skill: <span data-field="skill"></span></div>
-          <p data-field="description" data-placeholder="&lt;empty game description&gt;"></p>
+          <h2 data-showfor="similarName">類似ゲーム: <span data-field="similarName"></span><span data-showfor="year"> (<span data-field="year"></span>)</span></h2>
+          <div data-showfor="time"><i class="material-symbols">schedule</i> 所要時間: <span data-field="time"></span>分</div>
+          <div data-showfor="mode"><i class="material-symbols">groups</i> モード: <span data-field="mode"></span></div>
+          <div data-showfor="skill"><i class="material-symbols">psychology</i> スキル: <span data-field="skill"></span></div>
+          <p data-field="description" data-placeholder="&lt;ゲームの説明がありません&gt;"></p>
         </div>
       </div>
       <div class="addToRoomBox">
-        <p>Welcome to <b>VirtualTabletop.io</b>!</p>
-        <p>On this platform you can <b>play games</b> with family and friends directly in your browser. No accounts necessary.</p>
-        <p>You followed a direct link to the <span id="welcomeGameType">game</span> "<b id="welcomeGameName"></b>". In order to <span id="welcomeGameTypeHint">start playing it</span>:</p>
+        <p><b>VirtualTabletop.io</b> へようこそ！</p>
+        <p>このプラットフォームでは、オンラインで<b>ゲームを遊べます</b>。ブラウザだけで動作し、アカウント登録は不要です。</p>
+        <p><span id="welcomeGameType">ゲーム</span>「<b id="welcomeGameName"></b>」への直接リンクを開きました。<span id="welcomeGameTypeHint">プレイを始める</span>には:</p>
         <div class="welcomeInput">
           <ol>
-            <li>Create a custom room URL and player name or accept the defaults.</li>
-            <li>Click CREATE ROOM.</li>
-            <li>On the next page, click PLAY.</li>
-            <li>Invite your friends on the Players tab.</li>
+            <li>ルームのURLとプレイヤー名を自由に決めるか、初期設定のままにします。</li>
+            <li>「ルームを作成」をクリックします。</li>
+            <li>次のページで「プレイ」をクリックします。</li>
+            <li>「プレイヤー」タブで友達を招待します。</li>
           </ol>
-          <b>Room URL:</b> <span></span><span id="roomURLDisplay"></span><input id="welcomeJoinRoom" tabindex="1"></span><br>
-          <b>Player name:</b> <input id="welcomePlayerName" tabindex="2">
-          <button id="welcomePlayButton" icon="play_arrow">Create room</button>
+          <b>ルームのURL:</b> <span></span><span id="roomURLDisplay"></span><input id="welcomeJoinRoom" tabindex="1"></span><br>
+          <b>プレイヤー名:</b> <input id="welcomePlayerName" tabindex="2">
+          <button id="welcomePlayButton" icon="play_arrow">ルームを作成</button>
         </div>
-        <p id="welcomeUserGenerated" icon="warning">This game is <b>user-generated content</b> for which VirtualTabletop.io holds no responsibility or liability.</p>
+        <p id="welcomeUserGenerated" icon="warning">このゲームは<b>ユーザーが作成したコンテンツ</b>であり、VirtualTabletop.io は一切の責任を負いません。</p>
         <div class="ai-notice" data-showfor="usesAIImagery">
           <i class="material-symbols">auto_awesome</i>
-          <span>This game uses AI generated imagery.</span>
+          <span>このゲームはAI生成画像を使用しています。</span>
         </div>
         <div class="ai-notice" data-showfor="usesAILayout">
           <i class="material-symbols">auto_awesome</i>
-          <span>This game was built with heavy use of AI for its layout.</span>
+          <span>このゲームはレイアウトの作成にAIを多用しています。</span>
         </div>
       </div>
     </div>
@@ -567,7 +567,7 @@
         <button icon="close"></button>
       </div>
       <div>
-        <input placeholder="Search" />
+        <input placeholder="検索" />
         <p>Sound effects by <a href="https://kenney.nl" class="external">Kenney</a>, released under CC0. Click the arrow to preview a sound, click its name to select it.</p>
         <div id="audioList">
           Loading...
@@ -578,26 +578,26 @@
     <div id="aboutOverlay" class="overlay"  style="display:none;">
       <div class="header">
         <div class="about_title">
-          <h1>About VirtualTabletop.io</h1>
-          <p>This project is licensed under GPLv3 and is <a href="https://github.com/ArnoldSmith86/virtualtabletop">available on GitHub</a>.</p>
+          <h1>VirtualTabletop.io について</h1>
+          <p>このプロジェクトは GPLv3 でライセンスされており、<a href="https://github.com/ArnoldSmith86/virtualtabletop">GitHub</a> で公開されています。</p>
         </div>
         <div class="about_joinus">
-          <a href="https://discord.gg/CEZz7wny9T"><img src="i/branding/discord-logo.svg" /><br>Come join our discord server.</a>
-          <a href="https://github.com/ArnoldSmith86/virtualtabletop/wiki"><img src="i/branding/github-logo.svg" /><br>Check out our wiki page for helpful information about how to make your own games.</a>
+          <a href="https://discord.gg/CEZz7wny9T"><img src="i/branding/discord-logo.svg" /><br>Discord サーバーに参加しよう。</a>
+          <a href="https://github.com/ArnoldSmith86/virtualtabletop/wiki"><img src="i/branding/github-logo.svg" /><br>ゲームの作り方などは Wiki ページをご覧ください。</a>
         </div>
       </div>
       <div class="content-body">
-        <h2>Online Gameplay</h2>
-          <p>This is an open-source, free-to-use platform, with no accounts and no ads.</p>
-          <p>Anyone that knows the URL of the room that you are using may come in to the room at any time and take any action, including playing or changing games in the room or deleting games. Keep a personal, offline backup of everything that you care about.</p>
-          <p>Know who you are playing with. The platform is unmoderated and no one controls what may happen. Anything you do or share is your own responsibility.</p>
-          <p>Cheating is trivially easy, unpreventable, and undetectable. Just play for fun.</p>
-          <p>If you are under the age of majority in the location you are from, be sure to comply with the rules for accessing online material that apply to you.</p>
-        <h2>Privacy Policy</h2>
-          <p>VirtualTabletop.io does not ask for or collect any personal identification information.</p>
-          <p>VirtualTabletop.io does not use cookies.</p>
-          <p>VirtualTabletop.io does, however, collect the "player name" as well as a few other game-related settings, and keeps that data in local storage on the user's device. The player name defaults to a number, but is customizable to any user entered data. VirtualTabletop.io does not analyze or use that information except to display it on the screen while accessing the website.</p>
-        <h2>Copyright Attribution</h2>
+        <h2>オンラインプレイについて</h2>
+          <p>これはオープンソースで無料のプラットフォームで、アカウントも広告もありません。</p>
+          <p>使用中のルームのURLを知っている人は、いつでもそのルームに入り、ゲームのプレイや変更、削除など、あらゆる操作ができます。大切なものはオフラインで各自バックアップしておいてください。</p>
+          <p>誰と遊ぶのかをよく確認してください。このプラットフォームは管理者による監視が行われておらず、何が起きても誰も制御できません。あなたの行動や共有したものはすべて自己責任です。</p>
+          <p>不正行為は難しくなく、防ぐことも検出することもできません。お互いに節度を持って使いましょう。</p>
+          <p>お住まいの地域で未成年にあたる場合は、オンラインコンテンツへのアクセスについてあなたに適用されるルールを必ず守ってください。</p>
+        <h2>プライバシーポリシー</h2>
+          <p>VirtualTabletop.io は、個人を特定できる情報を求めることも収集することもありません。</p>
+          <p>VirtualTabletop.io は Cookie を使用しません。</p>
+          <p>ただし、「プレイヤー名」とゲームに関するいくつかの設定は収集され、ユーザーの端末のローカルストレージに保存されます。プレイヤー名の初期値は数字ですが、任意の文字列に変更できます。VirtualTabletop.io は、ウェブサイトの利用中に画面へ表示する目的以外で、この情報を分析・利用することはありません。</p>
+        <h2>著作権表示</h2>
           <p>Great care has been made to attribute the sources where appropriate. If you feel your work has been taken or used without your consent, please contact us on <a href="https://discord.gg/CEZz7wny9T">Discord</a> and immediate action will be taken to remove any infringing works.</p>
           <p>Alternatively, if you are the intellectual property owner and you would allow VirtualTabletop.io to host an officially licensed version of the game using the artwork and rules of the original, let us know. We can incorporate almost any license restrictions in the attribution section of the game. Of course, we could not prevent users from accessing or downloading the protected materials.</p>
           <p>All graphics used on this site were either created by members of the VirtualTabletop.io community and released into the public domain, sourced from works in the public domain, or licensed for use through Creative Commons or other licenses.</p>
@@ -647,10 +647,10 @@
               </ul>
       </div>
       <div id="betaText" class="content-body">
-        <h2>Beta</h2>
-        <p>Play this game on an experimental preview server to help us test new features. Anyone joining this room will be redirected there until you switch back.</p>
+        <h2>ベータ</h2>
+        <p>新機能のテストに協力するため、実験的なプレビューサーバーでこのゲームを遊べます。このルームに参加する人は、あなたが元に戻すまでそちらにリダイレクトされます。</p>
         <table id="betaServerListTable">
-          <thead><th>Server</th><th>Returns the state to this server</th><th>Description</th></thead>
+          <thead><th>サーバー</th><th>状態をこのサーバーに戻す</th><th>説明</th></thead>
           <tbody id="betaServerList"></tbody>
         </table>
         <template id="template-betaServerList-entry" type="text/template">
@@ -662,38 +662,38 @@
     </div>
 
     <div id="internalErrorOverlay" class="overlay">
-      <h1>Internal Error</h1>
-      <p>Your client triggered an internal error on the server and you have been disconnected from the game.</p>
-      <p>Please <a href="https://github.com/ArnoldSmith86/virtualtabletop/issues">open an issue on GitHub</a> and try to describe in detail what led to this problem.</p>
-      <p>You can try to reload the page. It's very possible that you will run into the same problem again until it is fixed though.</p>
+      <h1>内部エラー</h1>
+      <p>お使いのクライアントがサーバー上で内部エラーを引き起こしたため、ゲームから切断されました。</p>
+      <p>どのような操作でこの問題が起きたのかをできるだけ詳しく書いて、<a href="https://github.com/ArnoldSmith86/virtualtabletop/issues">GitHub でIssueを作成</a>してください。</p>
+      <p>ページを再読み込みしてみてください。ただし、修正されるまで同じ問題が再び起きる可能性が高いです。</p>
     </div>
 
     <div id="clientErrorOverlay" class="overlay">
-      <h1>Something went wrong in your browser</h1>
-      <p>Your client just crashed. Sorry, this shouldn't happen.</p>
-      <p id="clientErrorQuestion"><label for="clientErrorDescription">How can we trigger the error ourselves so we can fix it?</label></p>
-      <p id="clientErrorInput"><textarea id="clientErrorDescription" placeholder="e.g. I dragged a card onto a deck and the screen froze" style="height: 150px; width: 100%"></textarea></p>
-      <p id="clientErrorStatus" style="display:none">The report could not be sent. Please copy the technical details below and report them on <a href="https://discord.gg/CEZz7wny9T">Discord</a> or <a href="https://github.com/ArnoldSmith86/virtualtabletop/issues">GitHub</a>.</p>
-      <p><button>Submit and Reload</button></p>
+      <h1>ブラウザで問題が発生しました</h1>
+      <p>クライアントがクラッシュしました。申し訳ありません。本来は起きないはずの問題です。</p>
+      <p id="clientErrorQuestion"><label for="clientErrorDescription">修正のために、こちらでエラーを再現するにはどうすればよいですか？</label></p>
+      <p id="clientErrorInput"><textarea id="clientErrorDescription" placeholder="例: カードを山札にドラッグしたら画面が固まった" style="height: 150px; width: 100%"></textarea></p>
+      <p id="clientErrorStatus" style="display:none">レポートを送信できませんでした。下の技術的な詳細をコピーして、<a href="https://discord.gg/CEZz7wny9T">Discord</a> または <a href="https://github.com/ArnoldSmith86/virtualtabletop/issues">GitHub</a> で報告してください。</p>
+      <p><button>送信して再読み込み</button></p>
       <details>
-        <summary>Technical Details</summary>
+        <summary>技術的な詳細</summary>
         <pre id="clientErrorStack"></pre>
       </details>
     </div>
 
     <div id="feedbackOverlay" class="overlay">
       <div class="titleWithCloseButton">
-        <h1>Feedback</h1>
+        <h1>フィードバック</h1>
         <button icon="close"></button>
       </div>
       <div>
         <div icon="feedback">
-          <p>Found a bug or have a suggestion? Let us know!</p>
+          <p>不具合の発見や改善のご提案があれば、ぜひお知らせください（英語のみ対応）</p>
           <p><textarea style="height: 150px; width: 100%"></textarea></p>
           <p class="feedbackError" style="display: none"></p>
-          <p class="feedbackThanks" style="display: none">Thank you! Your feedback has been sent.</p>
-          <p><input type="checkbox" id="feedbackIncludeState" checked> <label for="feedbackIncludeState">Include a snapshot of this room (URL, full page contents, game state, and player names)</label></p>
-          <p class="feedbackPrivacyNote">Your message and your browser info are always sent to help us fix things. Uncheck the box above if you'd rather not also share the room snapshot.</p>
+          <p class="feedbackThanks" style="display: none">ありがとうございます。フィードバックを送信しました。</p>
+          <p><input type="checkbox" id="feedbackIncludeState" checked> <label for="feedbackIncludeState">このルームのスナップショット（URL、ページ全体の内容、ゲームの状態、プレイヤー名）を含める</label></p>
+          <p class="feedbackPrivacyNote">メッセージとブラウザ情報は、問題の修正に役立てるため常に送信されます。ルームのスナップショットを共有したくない場合は、上のチェックボックスを外してください。</p>
           <div class="buttons">
             <button icon="close"></button>
             <button icon="check"></button>
@@ -703,21 +703,21 @@
     </div>
 
     <div id="serverRestartOverlay" class="overlay" style="display:none;">
-      <h1>The server was updated</h1>
+      <h1>サーバーが更新されました</h1>
       <div class="disconnected">
         <div class="cable">&nbsp;</div>
         <div class="plug">&nbsp;</div>
         <div class="cable">&nbsp;</div>
       </div>
-      <p>This page is reloading with the new version in a moment. Your room is not affected - it comes back exactly as you left it.</p>
-      <p><button id="reloadNowButton">Reload now</button></p>
+      <p>まもなく新しいバージョンでページが再読み込みされます。ルームには影響がなく、そのままの状態で戻ります。</p>
+      <p><button id="reloadNowButton">今すぐ再読み込み</button></p>
     </div>
 
     <div id="editModeUnavailableOverlay" class="overlay" style="display:none;">
-      <h1>Edit mode could not be loaded</h1>
-      <p>The editor is fetched from the server the first time it is opened, and the server did not answer - it is most likely restarting.</p>
-      <p>Nothing is broken and nothing is lost. Please try again in a moment.</p>
-      <p><button icon="close">Close</button></p>
+      <h1>編集モードを読み込めませんでした</h1>
+      <p>エディターは初めて開くときにサーバーから取得されますが、サーバーが応答しませんでした。おそらく再起動中です。</p>
+      <p>何も壊れておらず、失われたものもありません。しばらくしてからもう一度お試しください。</p>
+      <p><button icon="close">閉じる</button></p>
     </div>
 
     <div id="playerCursors"></div>
@@ -755,8 +755,8 @@
        tests/browsercompat.test.js. -->
   <div id="unsupportedBrowser" class="unsupportedBrowser" hidden>
     <img src="i/branding/logo.svg" alt="VirtualTabletop">
-    <h1>This browser is too old for VirtualTabletop</h1>
-    <p>Please update this browser, or open this page in one of these - or anything newer:</p>
+    <h1>このブラウザは VirtualTabletop には古すぎます</h1>
+    <p>このブラウザを更新するか、次のいずれか（またはそれより新しいもの）でこのページを開いてください:</p>
     <ul id="unsupportedBrowserVersions">
       <li><b>Chrome 88</b></li>
       <li><b>Edge 88</b></li>
@@ -765,14 +765,14 @@
       <li><b>Safari on iOS 14.5</b></li>
       <li><b>Samsung Internet 15</b></li>
     </ul>
-    <p class="unsupportedBrowserURL">This page:<br><span id="unsupportedBrowserURL"></span></p>
-    <p><a href="#" id="unsupportedBrowserContinue">Let me try anyway</a></p>
-    <p id="unsupportedBrowserReason" class="unsupportedBrowserReason">(this browser is missing something VirtualTabletop is built on)</p>
+    <p class="unsupportedBrowserURL">このページ:<br><span id="unsupportedBrowserURL"></span></p>
+    <p><a href="#" id="unsupportedBrowserContinue">このまま試してみる</a></p>
+    <p id="unsupportedBrowserReason" class="unsupportedBrowserReason">(このブラウザには、VirtualTabletop の動作に必要なものが備わっていません)</p>
   </div>
-  <a href="#" id="unsupportedBrowserReopen" class="unsupportedBrowserReopen" hidden>Why this may not work</a>
+  <a href="#" id="unsupportedBrowserReopen" class="unsupportedBrowserReopen" hidden>動作しない可能性がある理由</a>
   <script>
     function unsupportedBrowser(missing) {
-      document.getElementById('unsupportedBrowserReason').innerHTML = '(this browser is missing ' + missing + ', which VirtualTabletop is built on)';
+      document.getElementById('unsupportedBrowserReason').innerHTML = '(このブラウザには、VirtualTabletop の動作に必要な ' + missing + ' が備わっていません)';
       document.getElementById('unsupportedBrowser').removeAttribute('hidden');
       document.getElementById('unsupportedBrowserReopen').setAttribute('hidden', '');
     }
@@ -807,9 +807,9 @@
   <noscript>
     <div class="unsupportedBrowser">
       <img src="i/branding/logo.svg" alt="VirtualTabletop">
-      <h1>VirtualTabletop needs JavaScript</h1>
-      <p>This page is a JavaScript application - there is nothing to show without it.</p>
-      <p>Please enable JavaScript for this site and reload the page.</p>
+      <h1>VirtualTabletop には JavaScript が必要です</h1>
+      <p>このページは JavaScript アプリケーションのため、JavaScript がないと何も表示できません。</p>
+      <p>このサイトで JavaScript を有効にして、ページを再読み込みしてください。</p>
     </div>
   </noscript>
 

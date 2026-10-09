@@ -49,7 +49,7 @@ function nextMetaUpdate(isApplied, timeout=3000) {
   return new Promise(function(resolve, reject) {
     const timer = setTimeout(function() {
       metaUpdateResolves = metaUpdateResolves.filter(r=>r != entry);
-      reject(new Error('The server did not apply the change.'));
+      reject(new Error('サーバーが変更を適用しませんでした。'));
     }, timeout);
     const entry = function(args) {
       if(isApplied && !isApplied(args))
@@ -65,9 +65,9 @@ function nextMetaUpdate(isApplied, timeout=3000) {
 // the widget properties that can still point at a player after they left, and how to name
 // them in the warning shown before that player is taken off the list
 const playerReferences = {
-  owner: 'cards or other widgets in the game belong to them',
-  player: 'they are seated in the game',
-  artist: 'they are credited as an artist'
+  owner: 'ゲーム内のカード等はプレイヤーのものになっています',
+  player: 'プレイヤーはゲームに着席しています',
+  artist: 'デザイナーとしてクレジットされています'
 };
 
 // a button that cannot do anything here stays visible and says why - removing it silently
@@ -80,8 +80,8 @@ function unavailableButton(button, reason) {
 
 // what a removed player leaves behind is invisible in this overlay, so say it before it happens
 async function confirmRemoval(player, references) {
-  const reasons = references.map(p=>playerReferences[p]).join(' and ');
-  const confirmed = await confirmOverlay('Remove player', `${player} is not connected, but ${reasons}.\n\nRemoving them only takes the name off this list - everything that belongs to them stays in the game and is picked up again by a player of the same name.`, 'Remove', 'Keep', 'delete', 'undo', 'red');
+  const reasons = references.map(p=>playerReferences[p]).join('、また');
+  const confirmed = await confirmOverlay('プレイヤーを削除', `${player}は接続していませんが、${reasons}。\n\nプレイヤーを削除しても、この一覧から名前が消えるだけです。そのプレイヤーのものはすべてゲームに残り、同じ名前のプレイヤーが再び引き継ぎます。`, '削除', '残す', 'delete', 'undo', 'red');
   showOverlay('playerOverlay');
   return confirmed;
 }
@@ -128,15 +128,15 @@ export function sessionChangeMessages(previous, current, ownSessionID) {
   const parts = new Set();
   for(const [ sessionID, player ] of previous)
     if(!current.has(sessionID) && !currentNames.has(player))
-      parts.add(`${player} left`);
+      parts.add(`${player}が退出しました`);
   for(const [ sessionID, player ] of current) {
     const before = previous.get(sessionID);
     if(before === undefined) {
       if(!previousNames.has(player))
-        parts.add(`${player} joined`);
+        parts.add(`${player}が参加しました`);
     // a rename of this tab is already announced by the 'rename' message handler
     } else if(before != player && sessionID != ownSessionID) {
-      parts.add(`${before} renamed to ${player}`);
+      parts.add(`${before}が${player}に名前を変更しました`);
     }
   }
   return [ ...parts ];
@@ -218,7 +218,7 @@ function fillPlayerList(players, active, sessions) {
         if(player == playerName) {
           removeFromDOM($('.viewPlayer', row));
         } else if(session && references.length) {
-          unavailableButton($('.viewPlayer', row), `You cannot view the game as ${player} because they are connected and taking part in the game - it would reveal their hand to you`);
+          unavailableButton($('.viewPlayer', row), `${player}は接続中でゲームに参加しているため、${player}としてゲームを表示することはできません（手札が見えてしまうため）`);
         } else {
           serverActionButton($('.viewPlayer', row), function() {
             toServer('rename', { oldName: playerName, newName: player, sessionID: mySessionID });
@@ -253,10 +253,10 @@ function fillPlayerList(players, active, sessions) {
       const sessionCell = $('td', domByTemplate('template-playerlist-session', {}, 'tr'));
       if(session) {
         // numbering the connections only carries information for players that actually have more than one
-        const label = playerSessions.length > 1 ? `Connection ${sessionIndex+1}` : 'connected';
-        $('.sessionLabel', sessionCell).textContent = session.sessionID == mySessionID ? `${label} (you)` : label;
+        const label = playerSessions.length > 1 ? `接続 ${sessionIndex+1}` : '接続中';
+        $('.sessionLabel', sessionCell).textContent = session.sessionID == mySessionID ? `${label}（あなた）` : label;
       } else {
-        $('.sessionLabel', sessionCell).textContent = 'not connected';
+        $('.sessionLabel', sessionCell).textContent = '未接続';
       }
       row.appendChild(sessionCell);
 
@@ -268,8 +268,8 @@ function fillPlayerList(players, active, sessions) {
   }
   // with a second tab open as the same player, adding a player also moves this tab to it
   $('#addLocalPlayerButton').title = (sessionsByPlayer[playerName] || []).length > 1
-    ? 'Add a player and switch this browser tab to them'
-    : 'Add a player who shares this device';
+    ? 'プレイヤーを追加し、このタブのURLをそのプレイヤーに切り替えます'
+    : 'この端末を共有するプレイヤーを追加';
   updatePlayerCountDisplay();
 }
 
@@ -278,7 +278,7 @@ function updatePlayerCountDisplay() {
   const playerCount = activePlayers.length;
 
   const tooltip = $('.tooltip', playersButton);
-  if (tooltip) tooltip.textContent = `Players: ${playerCount}`;
+  if (tooltip) tooltip.textContent = `プレイヤー: ${playerCount}`;
   updateToolbarLayout(); // the player count is part of the toolbar in some layouts
 }
 
@@ -340,7 +340,7 @@ onLoad(function() {
   onMessage('rename', function(args) {
     const oldName = playerName;
     playerName = args;
-    setStatusMessage(`You renamed to ${playerName}`);
+    setStatusMessage(`名前を${playerName}に変更しました`);
     localStorage.setItem('playerName', playerName);
     for(const [ id, widget ] of widgets)
       widget.updateOwner();
@@ -352,7 +352,7 @@ onLoad(function() {
     const localPlayerName = input.value.trim();
     // the server silently ignores empty and duplicate names, so complain right at the input instead
     if(!localPlayerName || (lastMetaArgs && lastMetaArgs.meta.players[localPlayerName] !== undefined)) {
-      input.setCustomValidity(localPlayerName ? 'This player already exists.' : 'Please enter a player name.');
+      input.setCustomValidity(localPlayerName ? 'このプレイヤーはすでに存在します。' : 'プレイヤー名を入力してください。');
       input.reportValidity();
       return;
     }
@@ -375,7 +375,7 @@ onLoad(function() {
   // the room URL is plain text - clicking it would just reload the room, so sharing it is the button's job
   serverActionButton($('#playersShareButton'), async function() {
     try {
-      showInviteStatus(await shareURL(location.href) == 'clipboard' ? 'Room URL copied to clipboard.' : 'Room URL shared.');
+      showInviteStatus(await shareURL(location.href) == 'clipboard' ? 'ルームのURLをクリップボードにコピーしました。' : 'ルームのURLを共有しました。');
     } catch(e) {
       showInviteStatus(e.message, true);
     }

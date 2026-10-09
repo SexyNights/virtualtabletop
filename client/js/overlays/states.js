@@ -117,7 +117,7 @@ async function resolveStateCollections(file, callback) {
 function selectVTTfile(callback) {
   selectFile(false, file=>resolveStateCollections(file, callback)).catch(e=>{
     if(e.message !== 'File selection cancelled.')
-      alert(`Error: ${e.toString()}`);
+      alert(`エラー: ${e.toString()}`);
   });
 }
 
@@ -171,7 +171,7 @@ async function uploadStateFile(sourceFile, targetURL, metaCallback, progressCall
     entries = zipIndex(buffer);
     jsonFiles = await unzipBuffer(buffer, name=>name.match(/json$/));
   } catch(e) {
-    alert(`${sourceFile.name} is not a valid VTT, VTTC, VTTS or PCIO file.`);
+    alert(`${sourceFile.name} は有効なVTT、VTTC、VTTS、PCIOファイルではありません。`);
     return;
   }
 
@@ -193,7 +193,7 @@ async function uploadStateFile(sourceFile, targetURL, metaCallback, progressCall
   }
 
   if(json === null) {
-    alert(`${sourceFile.name} is not a valid VTT, VTTC, VTTS or PCIO file.`);
+    alert(`${sourceFile.name} は有効なVTT、VTTC、VTTS、PCIOファイルではありません。`);
     return;
   } else if(Array.isArray(json)) {
     metaCallback(sourceFile.name.replace(/\.[^.]+$/, ''), '', null, [{}], null, null);
@@ -324,7 +324,7 @@ async function saveState(e) {
       toServer('saveState', { players: $('#stateSaveOverlay input').value });
       showStatesOverlay('statesOverlay');
     } else {
-      alert('Please enter active players or a different identifier.');
+      alert('参加中のプレイヤー名か、別の識別名を入力してください。');
     }
   };
   $('#stateSaveOverlay [icon=undo]').onclick = $('#stateSaveOverlay [icon=close]').onclick = _=>showStatesOverlay('statesOverlay');
@@ -341,14 +341,24 @@ function updateEmptyVariantsHint() {
   $('#emptyVariants').style.display = $('#variantsList .variant') ? 'none' : 'block';
 }
 
+// display names only - the English names are the keys the rest of the code (and config.json) works with
+const categoryLabels = { 'In-Progress Games': '進行中のゲーム', 'Game Shelf': '個人用ゲームリスト', 'Public Library': '公開ライブラリ' };
+const libraryTypeLabels = { 'Games': 'ゲーム', 'Tutorials': '予約領域' };
+function categoryLabel(key) {
+  return categoryLabels[key] || key;
+}
+function libraryTypeLabel(key) {
+  return libraryTypeLabels[key] || key;
+}
+
 function updateEmptyLibraryHint() {
   const isEmpty = !$('#statesList > div:nth-of-type(2) .roomState');
   const hasPublicLibrary = Object.keys(config.libraries || {}).length > 0;
   $('#emptyLibrary').style.display = isEmpty ? 'block' : 'none';
   if(isEmpty) {
     $('#emptyLibrary').innerHTML = hasPublicLibrary
-      ? 'Your personal game library is currently empty.<br>Use the stars below to pin public library games, use the "Add game" button above or drag VTT files here.'
-      : 'Your personal game library is currently empty.<br>Use the "Add game" button above or drag VTT files here.';
+      ? '個人用ゲームリストには何も保存されていません。<br>公開ライブラリ内のゲームを選ぶか、画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。<br>公開ライブラリ内にあるゲームのサムネイル左上には☆マークがあります。この☆マークをクリックするとお気に入りとして登録されます'
+      : '個人用ゲームリストには何も保存されていません。<br>画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。';
   }
   $('#emptyLibraryByFilter').style.display = $('#statesList > div:nth-of-type(2) .visible.roomState') || isEmpty ? 'none' : 'block';
 }
@@ -459,9 +469,9 @@ function fillStateTileTitles(dom, name, similarName, savePlayers, saveDate) {
     $('.linked', dom).textContent = 'save';
     $('h4', dom).textContent = `${savePlayers}`;
     $('h4', dom).innerHTML += `<br><br>`;
-    $('h4', dom).append(`${date.toLocaleString("en-US", { month: "long" })} ${date.getDate()}, ${date.getFullYear()}`);
+    $('h4', dom).append(`${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`);
   } else {
-    $('h4', dom).textContent = similarName && name != similarName ? `Similar to ${similarName}` : '';
+    $('h4', dom).textContent = similarName && name != similarName ? `類似ゲーム: ${similarName}` : '';
   }
   emojis2images(dom);
 }
@@ -621,7 +631,7 @@ function fillStatesList(states, starred, activeState, returnServer, activePlayer
       entry.addEventListener('click', async function(e) {
         let loadGame = $('#stateDetailsOverlay.notEditing');
         if(!loadGame) {
-          loadGame = await confirmOverlay('Discard changes', `Are you sure you want to discard any changes you made to ${$('#mainDetails h1').innerText}?`, 'Discard', 'Keep', 'delete', 'undo', 'red');
+          loadGame = await confirmOverlay('変更を破棄', `${$('#mainDetails h1').innerText}に加えた変更をすべて破棄してよろしいですか？`, '破棄', '残す', 'delete', 'undo', 'red');
           if(loadGame)
             disableEditing($('#stateDetailsOverlay'), state);
           showStatesOverlay('statesOverlay');
@@ -683,7 +693,7 @@ function fillStatesList(states, starred, activeState, returnServer, activePlayer
 
   const libraryTypeKeys = Object.keys(config.libraries);
   for(const [ title, category ] of Object.entries(categories)) {
-    const displayTitle = (title === 'Public Library' && libraryTypeKeys.length === 1) ? libraryTypeKeys[0] : title;
+    const displayTitle = (title === 'Public Library' && libraryTypeKeys.length === 1) ? libraryTypeLabel(libraryTypeKeys[0]) : categoryLabel(title);
     $('.title', category).prepend(displayTitle);
     $('#statesList').appendChild(category);
   }
@@ -716,7 +726,7 @@ function fillStatesList(states, starred, activeState, returnServer, activePlayer
   $('#filterByType').dataset.initialized = 'true';
   let typeHTML = `<option value="" ${previousType === '' ? 'selected' : ''}></option>`;
   for(const typeOption of libraryTypes)
-    typeHTML += `<option value="${typeOption}" ${previousType === typeOption ? 'selected' : ''}>${html(typeOption)}</option>`;
+    typeHTML += `<option value="${typeOption}" ${previousType === typeOption ? 'selected' : ''}>${html(libraryTypeLabel(typeOption))}</option>`;
   $('#filterByType').innerHTML = typeHTML;
 
   if(libraryTypes.length > 1) {
@@ -724,7 +734,7 @@ function fillStatesList(states, starred, activeState, returnServer, activePlayer
     for(const typeOption of libraryTypes) {
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.textContent = typeOption;
+      btn.textContent = libraryTypeLabel(typeOption);
       btn.dataset.type = typeOption;
       if(previousType === typeOption)
         btn.classList.add('active');
@@ -738,13 +748,13 @@ function fillStatesList(states, starred, activeState, returnServer, activePlayer
   }
 
   const previousLanguage = $('#filterByLanguage').value;
-  let languageHTML = '<option>Any</option>';
+  let languageHTML = '<option value="Any">指定なし</option>';
   for(const languageOption of Object.keys(languageOptions).sort())
-    languageHTML += `<option ${previousLanguage && previousLanguage == languageOption ? 'selected' : ''} value="${html(languageOption)}">${html(languageOption.replace(/^$/, 'None'))}</option>`;
+    languageHTML += `<option ${previousLanguage && previousLanguage == languageOption ? 'selected' : ''} value="${html(languageOption)}">${html(languageOption.replace(/^$/, '言語なし'))}</option>`;
   $('#filterByLanguage').innerHTML = languageHTML;
 
   const previousMode = $('#filterByMode').value;
-  let modeHTML = '<option>Any</option>';
+  let modeHTML = '<option value="Any">指定なし</option>';
   for(const modeOption of Object.keys(modeOptions).sort((a, b) => a.localeCompare(b)))
     modeHTML += `<option ${previousMode && previousMode == modeOption ? 'selected' : ''}>${html(modeOption)}</option>`;
   $('#filterByMode').innerHTML = modeHTML;
@@ -779,7 +789,7 @@ function fillStatesList(states, starred, activeState, returnServer, activePlayer
 // report scans instead of reading as one wall of text
 function fillImportNotes(warnings) {
   warnings = Array.isArray(warnings) ? warnings : [];
-  $('#importNotesHeading').textContent = warnings.length ? `Import notes (${warnings.length})` : 'Import notes';
+  $('#importNotesHeading').textContent = warnings.length ? `インポートに関する注記 (${warnings.length})` : 'インポートに関する注記';
   $('#importNotes').innerHTML = '';
   for(const warning of warnings) {
     const li = document.createElement('li');
@@ -797,9 +807,9 @@ function usesAI(state) {
 function aiDisclosureText(state) {
   const lines = [];
   if(state.usesAIImagery)
-    lines.push('Uses AI generated imagery');
+    lines.push('AI生成画像を使用');
   if(state.usesAILayout)
-    lines.push('Heavy use of AI for the layout');
+    lines.push('レイアウトにAIを多用');
   return lines.join('\n');
 }
 
@@ -912,9 +922,9 @@ function fillStateDetails(states, state, dom) {
 
       if(widgets.size) {
         if(state.savePlayers)
-          loadNewState = await confirmOverlay('Switch game', 'Are you sure you want to switch games? You will lose all unsaved progress in the current game.', ' Load in-progress game', 'Return to active game', 'play_arrow', 'undo');
+          loadNewState = await confirmOverlay('ゲームを切り替え', 'ゲームを切り替えてよろしいですか？切り替え前に進行状況を保存しておかないと、現在進行中ゲームデータはすべて失われます。', '進行中のゲームを読み込む', '進行中のゲームに戻る', 'play_arrow', 'undo');
         else
-          loadNewState = await confirmOverlay('Switch game', 'Are you sure you want to load a new game? You will lose all unsaved progress in the current game.', 'Load new game', 'Return to active game', 'play_arrow', 'undo');
+          loadNewState = await confirmOverlay('ゲームを切り替え', '新しいゲームを読み込んでよろしいですか？切り替え前に進行状況を保存しておかないと、現在進行中ゲームデータはすべて失われます。', '新しいゲームを読み込む', '進行中のゲームに戻る', 'play_arrow', 'undo');
         switchToActiveGame = loadNewState !== null;
       }
 
@@ -1070,9 +1080,9 @@ function fillStateDetails(states, state, dom) {
   shareButton($('#shareLinkOverlay button[icon=share]'), _=>$('#shareLinkOverlay input').value);
   $('#stateDetailsOverlay .buttons [icon=delete]').onclick = async function() {
     $('#statesButton').dataset.overlay = 'confirmOverlay';
-    const type     = state.savePlayers ? 'saved game'        : 'game';
-    const category = state.savePlayers ? 'in-progress games' : 'game shelf';
-    if(await confirmOverlay(`Delete ${type}`, `Are you sure you want to completely remove this ${type} from your ${category}?`, 'Delete', 'Keep', 'delete', 'undo', 'red')) {
+    const type     = state.savePlayers ? '保存したゲーム'        : 'ゲーム';
+    const category = state.savePlayers ? '進行中のゲーム' : '個人用ゲームリスト';
+    if(await confirmOverlay(`${type}を削除`, `この${type}を${category}から完全に削除してよろしいですか？`, '削除', '残す', 'delete', 'undo', 'red')) {
       toServer('removeState', state.id);
       removeFromDOM(dom);
       updateEmptyLibraryHint();
@@ -1159,7 +1169,7 @@ function fillStateDetails(states, state, dom) {
   };
   $('#discardDetails').onclick = async function() {
     $('#statesButton').dataset.overlay = 'confirmOverlay';
-    if(await confirmOverlay('Discard changes', "Are you sure you want to discard any changes you made to this game's variants and metadata?", 'Discard', 'Keep', 'delete', 'undo', 'red')) {
+    if(await confirmOverlay('変更を破棄', 'このゲームのバリアントとメタデータに加えた変更をすべて破棄してよろしいですか？', '破棄', '残す', 'delete', 'undo', 'red')) {
       disableEditing($('#stateDetailsOverlay'), state);
       showStatesOverlay('statesOverlay');
       dom.click();
@@ -1175,8 +1185,8 @@ function fillStateDetails(states, state, dom) {
       $('#statesButton').dataset.overlay = 'confirmOverlay';
       // a public library game is only editable on a server that allows editing it, and there
       // removing it deletes the game itself instead of just this room's shelf entry
-      const target = state.publicLibrary ? 'the public library of this server' : 'your game shelf';
-      if(!await confirmOverlay('Save without variants', `You deleted the last variant of this game. Saving now removes the whole game from ${target}. Are you sure?`, 'Delete game', 'Back to editing', 'delete', 'undo', 'red')) {
+      const target = state.publicLibrary ? 'このサーバーの公開ライブラリ' : '個人用ゲームリスト';
+      if(!await confirmOverlay('バリアントなしで保存', `このゲームの最後のバリアントを削除しました。今保存すると、ゲーム全体が${target}から削除されます。よろしいですか？`, 'ゲームを削除', '編集に戻る', 'delete', 'undo', 'red')) {
         showStatesOverlay(detailsOverlay);
         return;
       }
@@ -1379,7 +1389,7 @@ onLoad(function() {
     if($('#stateAddOverlay input').value.match(/^http/))
       addState(e, 'link', $('#stateAddOverlay input').value);
     else
-      alert('Please enter a link.');
+      alert('リンクを入力してください。');
   });
 
   // setSidebar() is not called here: a resize reaches this listener before setScale() has given the

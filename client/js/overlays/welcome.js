@@ -42,8 +42,8 @@ function checkForGameURL() {
         $('#welcomePlayerName').value = playerName;
         $('#welcomeGameName').innerText = state.name;
         emojis2images($('#welcomeGameName'));
-        $('#welcomeGameType').innerText = gameDetails.category || 'game';
-        $('#welcomeGameTypeHint').innerText = gameDetails.category == 'tutorial' ? 'check it out' : 'start playing it';
+        $('#welcomeGameType').innerText = ({ game: 'ゲーム', tutorial: '予約領域' })[gameDetails.category || 'game'] || gameDetails.category;
+        $('#welcomeGameTypeHint').innerText = gameDetails.category == 'tutorial' ? '見る' : 'プレイを始める';
         $('#welcomeUserGenerated').style.display = gameDetails.type == 'public' ? 'none' : 'block';
         toggleClass($('#linkDetailsOverlay .star'),               'hidden',       gameDetails.type == 'user' || !state.stars);
         toggleClass($('#linkDetailsOverlay .mainStateImage > i'), 'hidden',       gameDetails.type == 'public');
