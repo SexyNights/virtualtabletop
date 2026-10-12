@@ -559,7 +559,7 @@ body.orientationMismatch:not(.lightsOff,.jsonEdit)::after {
     }
 
     body.wideToolbar .toolbarTab .tooltip {
-      font-size: 20px;
+      font-size: 15px;
     }
 
     body.wideToolbar .active.toolbarTab .tooltip {
@@ -582,11 +582,11 @@ body.orientationMismatch:not(.lightsOff,.jsonEdit)::after {
     }
 
     body.horizontalToolbar:not(.toolbarCompact2) .toolbarTab .tooltip {
-      font-size: 20px;
+      font-size: 15px;
     }
 
     body.horizontalToolbar.toolbarCompact1:not(.toolbarCompact2) .toolbarTab .tooltip {
-      font-size: 15px;
+      font-size: 13px;
     }
 
     body.horizontalToolbar:not(.toolbarCompact2) .active.toolbarTab .tooltip {
@@ -642,7 +642,7 @@ body.orientationMismatch:not(.lightsOff,.jsonEdit)::after {
     }
 
     html:fullscreen #fullscreenButton .tooltip::before {
-      content: 'Exit ';
+      content: '';
     }
 
     html:not(:-webkit-full-screen) #fullscreenButton::before {
@@ -658,7 +658,7 @@ body.orientationMismatch:not(.lightsOff,.jsonEdit)::after {
     }
 
     html:-webkit-full-screen #fullscreenButton .tooltip::before {
-      content: 'Exit ';
+      content: '';
     }
 
     #lightsButton::before {
@@ -2119,4 +2119,9 @@ input:invalid+span::after, .inputError::before {
   position: relative !important;
   transform-origin: top left !important;
   z-index: 1 !important;
+}
+
+/* 日本語版: フィードバックボタンを非表示 */
+#feedbackButton {
+  display: none !important;
 }

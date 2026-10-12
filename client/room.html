@@ -24,10 +24,10 @@
   <div id="toolbar">
     <img src="i/branding/logo.svg">
     <div class="divider logoDivider"></div>
-    <button id="statesButton" data-overlay="statesOverlay" class="toolbarButton toolbarTab" ><span class="tooltip">個人用ゲームリスト</span></button>
-    <button id="activeGameButton" class="toolbarButton toolbarTab" ><span class="tooltip">進行中のゲーム</span></button>
+    <button id="statesButton" data-overlay="statesOverlay" class="toolbarButton toolbarTab" ><span class="tooltip">ゲームリスト</span></button>
+    <button id="activeGameButton" class="toolbarButton toolbarTab" ><span class="tooltip">進行中ゲーム</span></button>
     <button id="playersButton" data-overlay="playerOverlay" class="toolbarButton toolbarTab" ><span class="tooltip">プレイヤー</span></button>
-    <button id="aboutButton" data-overlay="aboutOverlay" class="toolbarButton toolbarTab"><span class="tooltip">このサイトについて</span></button>
+    <button id="aboutButton" data-overlay="aboutOverlay" class="toolbarButton toolbarTab"><span class="tooltip">このサイト</span></button>
     <button id="editButton" class="toolbarButton toolbarTab"><span class="tooltip">編集モード</span></button>
     <div class="spacer"></div>
     <div class="divider"></div>
@@ -245,7 +245,7 @@
         <button icon="fast_forward" id="updateSaveState">読み込み中のゲームを更新</button>
         <button icon="save" id="saveState">進行中のゲームを保存</button>
         <button icon="add" id="addState">ゲームを追加</button>
-        <p id="emptyLibrary">個人用ゲームリストには何も保存されていません。<br>公開ライブラリ内のゲームを選ぶか、画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。<br>公開ライブラリ内にあるゲームサムネイル左上には☆マークがあります。この☆マークをクリックするとお気に入りとして登録されます</p>
+        <p id="emptyLibrary">ゲームリストには何も保存されていません。<br>公開ライブラリ内のゲームを選ぶか、画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。<br>公開ライブラリ内にあるゲームサムネイル左上には☆マークがあります。この☆マークをクリックするとお気に入りとして登録されます</p>
         <p id="emptyLibraryByFilter">表示するゲームがありません。<br>上のフィルターを調整してください。</p>
         <!--<button class="prettyButton gameMenu download">Download all</button>-->
       </div>
@@ -380,7 +380,7 @@
       </template>
       <div id="variantsList">
         <div class="variantsList"></div>
-        <p id="emptyVariants">このゲームにはバリアントが残っていません。バリアントとはゲームのさまざまなセットアップのことで、プレイできるようにするには少なくとも1つ必要です。<span class="onlyForEdit"><br>下から追加するか、保存してゲームを個人用ゲームリストから削除してください。</span></p>
+        <p id="emptyVariants">このゲームにはバリアントが残っていません。バリアントとはゲームのさまざまなセットアップのことで、プレイできるようにするには少なくとも1つ必要です。<span class="onlyForEdit"><br>下から追加するか、保存してゲームをゲームリストから削除してください。</span></p>
         <button icon="add" class="onlyForEdit">バリアントを追加</button>
       </div>
       <div id="similarDetails" data-showfor="similarImage|similarName|similarDesigner|similarAwards|bgg|rules">

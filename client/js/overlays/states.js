@@ -342,7 +342,7 @@ function updateEmptyVariantsHint() {
 }
 
 // display names only - the English names are the keys the rest of the code (and config.json) works with
-const categoryLabels = { 'In-Progress Games': '進行中のゲーム', 'Game Shelf': '個人用ゲームリスト', 'Public Library': '公開ライブラリ' };
+const categoryLabels = { 'In-Progress Games': '進行中のゲーム', 'Game Shelf': 'ゲームリスト', 'Public Library': '公開ライブラリ' };
 const libraryTypeLabels = { 'Games': 'ゲーム', 'Tutorials': '予約領域' };
 function categoryLabel(key) {
   return categoryLabels[key] || key;
@@ -357,8 +357,8 @@ function updateEmptyLibraryHint() {
   $('#emptyLibrary').style.display = isEmpty ? 'block' : 'none';
   if(isEmpty) {
     $('#emptyLibrary').innerHTML = hasPublicLibrary
-      ? '個人用ゲームリストには何も保存されていません。<br>公開ライブラリ内のゲームを選ぶか、画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。<br>公開ライブラリ内にあるゲームのサムネイル左上には☆マークがあります。この☆マークをクリックするとお気に入りとして登録されます'
-      : '個人用ゲームリストには何も保存されていません。<br>画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。';
+      ? 'ゲームリストには何も保存されていません。<br>公開ライブラリ内のゲームを選ぶか、画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。<br>公開ライブラリ内にあるゲームのサムネイル左上には☆マークがあります。この☆マークをクリックするとお気に入りとして登録されます'
+      : 'ゲームリストには何も保存されていません。<br>画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。';
   }
   $('#emptyLibraryByFilter').style.display = $('#statesList > div:nth-of-type(2) .visible.roomState') || isEmpty ? 'none' : 'block';
 }
@@ -1081,7 +1081,7 @@ function fillStateDetails(states, state, dom) {
   $('#stateDetailsOverlay .buttons [icon=delete]').onclick = async function() {
     $('#statesButton').dataset.overlay = 'confirmOverlay';
     const type     = state.savePlayers ? '保存したゲーム'        : 'ゲーム';
-    const category = state.savePlayers ? '進行中のゲーム' : '個人用ゲームリスト';
+    const category = state.savePlayers ? '進行中のゲーム' : 'ゲームリスト';
     if(await confirmOverlay(`${type}を削除`, `この${type}を${category}から完全に削除してよろしいですか？`, '削除', '残す', 'delete', 'undo', 'red')) {
       toServer('removeState', state.id);
       removeFromDOM(dom);
@@ -1185,7 +1185,7 @@ function fillStateDetails(states, state, dom) {
       $('#statesButton').dataset.overlay = 'confirmOverlay';
       // a public library game is only editable on a server that allows editing it, and there
       // removing it deletes the game itself instead of just this room's shelf entry
-      const target = state.publicLibrary ? 'このサーバーの公開ライブラリ' : '個人用ゲームリスト';
+      const target = state.publicLibrary ? 'このサーバーの公開ライブラリ' : 'ゲームリスト';
       if(!await confirmOverlay('バリアントなしで保存', `このゲームの最後のバリアントを削除しました。今保存すると、ゲーム全体が${target}から削除されます。よろしいですか？`, 'ゲームを削除', '編集に戻る', 'delete', 'undo', 'red')) {
         showStatesOverlay(detailsOverlay);
         return;
