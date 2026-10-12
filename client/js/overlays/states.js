@@ -342,7 +342,7 @@ function updateEmptyVariantsHint() {
 }
 
 // display names only - the English names are the keys the rest of the code (and config.json) works with
-const categoryLabels = { 'In-Progress Games': '進行中のゲーム', 'Game Shelf': 'ゲームリスト', 'Public Library': '公開ライブラリ' };
+const categoryLabels = { 'In-Progress Games': '進行中ゲーム', 'Game Shelf': 'ゲームリスト', 'Public Library': '公開ライブラリ' };
 const libraryTypeLabels = { 'Games': 'ゲーム', 'Tutorials': '予約領域' };
 function categoryLabel(key) {
   return categoryLabels[key] || key;
@@ -922,9 +922,9 @@ function fillStateDetails(states, state, dom) {
 
       if(widgets.size) {
         if(state.savePlayers)
-          loadNewState = await confirmOverlay('ゲームを切り替え', 'ゲームを切り替えてよろしいですか？切り替え前に進行状況を保存しておかないと、現在進行中ゲームデータはすべて失われます。', '進行中のゲームを読み込む', '進行中のゲームに戻る', 'play_arrow', 'undo');
+          loadNewState = await confirmOverlay('ゲームを切り替え', 'ゲームを切り替えてよろしいですか？切り替え前に進行状況を保存しておかないと、現在進行中ゲームデータはすべて失われます。', '進行中ゲームを読み込む', '進行中ゲームに戻る', 'play_arrow', 'undo');
         else
-          loadNewState = await confirmOverlay('ゲームを切り替え', '新しいゲームを読み込んでよろしいですか？切り替え前に進行状況を保存しておかないと、現在進行中ゲームデータはすべて失われます。', '新しいゲームを読み込む', '進行中のゲームに戻る', 'play_arrow', 'undo');
+          loadNewState = await confirmOverlay('ゲームを切り替え', '新しいゲームを読み込んでよろしいですか？切り替え前に進行状況を保存しておかないと、現在進行中ゲームデータはすべて失われます。', '新しいゲームを読み込む', '進行中ゲームに戻る', 'play_arrow', 'undo');
         switchToActiveGame = loadNewState !== null;
       }
 
@@ -1080,8 +1080,8 @@ function fillStateDetails(states, state, dom) {
   shareButton($('#shareLinkOverlay button[icon=share]'), _=>$('#shareLinkOverlay input').value);
   $('#stateDetailsOverlay .buttons [icon=delete]').onclick = async function() {
     $('#statesButton').dataset.overlay = 'confirmOverlay';
-    const type     = state.savePlayers ? '保存したゲーム'        : 'ゲーム';
-    const category = state.savePlayers ? '進行中のゲーム' : 'ゲームリスト';
+    const type     = state.savePlayers ? '保存済ゲーム'        : 'ゲーム';
+    const category = state.savePlayers ? '進行中ゲーム' : 'ゲームリスト';
     if(await confirmOverlay(`${type}を削除`, `この${type}を${category}から完全に削除してよろしいですか？`, '削除', '残す', 'delete', 'undo', 'red')) {
       toServer('removeState', state.id);
       removeFromDOM(dom);
