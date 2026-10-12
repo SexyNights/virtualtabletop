@@ -12,7 +12,6 @@ CODEOWNERS
 config.json
 coverage
 jest.config.mjs
-LICENSE
 node_modules
 README.md
 save

@@ -517,7 +517,7 @@
         </div>
       </div>
       <div class="addToRoomBox">
-        <p><b>VirtualTabletop.io</b> へようこそ！</p>
+        <p><b>VirtualTabletop</b>（非公式日本語版）へようこそ！</p>
         <p>このプラットフォームでは、オンラインで<b>ゲームを遊べます</b>。ブラウザだけで動作し、アカウント登録は不要です。</p>
         <p><span id="welcomeGameType">ゲーム</span>「<b id="welcomeGameName"></b>」への直接リンクを開きました。<span id="welcomeGameTypeHint">プレイを始める</span>には:</p>
         <div class="welcomeInput">
@@ -578,12 +578,13 @@
     <div id="aboutOverlay" class="overlay"  style="display:none;">
       <div class="header">
         <div class="about_title">
-          <h1>VirtualTabletop.io について</h1>
+          <h1>VirtualTabletop について</h1>
           <p>このプロジェクトは GPLv3 でライセンスされており、<a href="https://github.com/ArnoldSmith86/virtualtabletop">GitHub</a> で公開されています。</p>
+          <p>このサイトは、ArnoldSmith86 氏らによる VirtualTabletop を有志が日本語化して変更を加えた<b>非公式版</b>です。原作者とは関係がありません。日本語版についてのご質問や不具合の報告は、原作者ではなく<b>このサーバーの管理者</b>にお知らせください。日本語版のソースコードは <a href="https://github.com/SexyNights/virtualtabletop/tree/ja">GitHub</a> で公開しています。</p>
         </div>
         <div class="about_joinus">
-          <a href="https://discord.gg/CEZz7wny9T"><img src="i/branding/discord-logo.svg" /><br>Discord サーバーに参加しよう。</a>
-          <a href="https://github.com/ArnoldSmith86/virtualtabletop/wiki"><img src="i/branding/github-logo.svg" /><br>ゲームの作り方などは Wiki ページをご覧ください。</a>
+          <a href="https://discord.gg/CEZz7wny9T"><img src="i/branding/discord-logo.svg" /><br>原作者の Discord サーバー（英語）</a>
+          <a href="https://github.com/ArnoldSmith86/virtualtabletop/wiki"><img src="i/branding/github-logo.svg" /><br>ゲームの作り方などは原作者の Wiki（英語）をご覧ください。</a>
         </div>
       </div>
       <div class="content-body">
@@ -594,9 +595,9 @@
           <p>不正行為は難しくなく、防ぐことも検出することもできません。お互いに節度を持って使いましょう。</p>
           <p>お住まいの地域で未成年にあたる場合は、オンラインコンテンツへのアクセスについてあなたに適用されるルールを必ず守ってください。</p>
         <h2>プライバシーポリシー</h2>
-          <p>VirtualTabletop.io は、個人を特定できる情報を求めることも収集することもありません。</p>
-          <p>VirtualTabletop.io は Cookie を使用しません。</p>
-          <p>ただし、「プレイヤー名」とゲームに関するいくつかの設定は収集され、ユーザーの端末のローカルストレージに保存されます。プレイヤー名の初期値は数字ですが、任意の文字列に変更できます。VirtualTabletop.io は、ウェブサイトの利用中に画面へ表示する目的以外で、この情報を分析・利用することはありません。</p>
+          <p>このサーバーは、個人を特定できる情報を求めることも収集することもありません。</p>
+          <p>このサーバーは Cookie を使用しません。</p>
+          <p>ただし、「プレイヤー名」とゲームに関するいくつかの設定は収集され、ユーザーの端末のローカルストレージに保存されます。プレイヤー名の初期値は数字ですが、任意の文字列に変更できます。このサーバーは、ウェブサイトの利用中に画面へ表示する目的以外で、この情報を分析・利用することはありません。</p>
         <h2>著作権表示</h2>
           <p>Great care has been made to attribute the sources where appropriate. If you feel your work has been taken or used without your consent, please contact us on <a href="https://discord.gg/CEZz7wny9T">Discord</a> and immediate action will be taken to remove any infringing works.</p>
           <p>Alternatively, if you are the intellectual property owner and you would allow VirtualTabletop.io to host an officially licensed version of the game using the artwork and rules of the original, let us know. We can incorporate almost any license restrictions in the attribution section of the game. Of course, we could not prevent users from accessing or downloading the protected materials.</p>
@@ -664,7 +665,7 @@
     <div id="internalErrorOverlay" class="overlay">
       <h1>内部エラー</h1>
       <p>お使いのクライアントがサーバー上で内部エラーを引き起こしたため、ゲームから切断されました。</p>
-      <p>どのような操作でこの問題が起きたのかをできるだけ詳しく書いて、<a href="https://github.com/ArnoldSmith86/virtualtabletop/issues">GitHub でIssueを作成</a>してください。</p>
+      <p>どのような操作でこの問題が起きたのかを、できるだけ詳しく<b>このサーバーの管理者</b>にお知らせください。</p>
       <p>ページを再読み込みしてみてください。ただし、修正されるまで同じ問題が再び起きる可能性が高いです。</p>
     </div>
 
@@ -673,7 +674,7 @@
       <p>クライアントがクラッシュしました。申し訳ありません。本来は起きないはずの問題です。</p>
       <p id="clientErrorQuestion"><label for="clientErrorDescription">修正のために、こちらでエラーを再現するにはどうすればよいですか？</label></p>
       <p id="clientErrorInput"><textarea id="clientErrorDescription" placeholder="例: カードを山札にドラッグしたら画面が固まった" style="height: 150px; width: 100%"></textarea></p>
-      <p id="clientErrorStatus" style="display:none">レポートを送信できませんでした。下の技術的な詳細をコピーして、<a href="https://discord.gg/CEZz7wny9T">Discord</a> または <a href="https://github.com/ArnoldSmith86/virtualtabletop/issues">GitHub</a> で報告してください。</p>
+      <p id="clientErrorStatus" style="display:none">レポートを送信できませんでした。下の技術的な詳細をコピーして、<b>このサーバーの管理者</b>にお知らせください。</p>
       <p><button>送信して再読み込み</button></p>
       <details>
         <summary>技術的な詳細</summary>
@@ -688,7 +689,7 @@
       </div>
       <div>
         <div icon="feedback">
-          <p>不具合の発見や改善のご提案があれば、ぜひお知らせください（英語のみ対応）</p>
+          <p>不具合の発見や改善のご提案があれば、ぜひお知らせください。内容はこのサーバーの管理者に届きます。</p>
           <p><textarea style="height: 150px; width: 100%"></textarea></p>
           <p class="feedbackError" style="display: none"></p>
           <p class="feedbackThanks" style="display: none">ありがとうございます。フィードバックを送信しました。</p>
