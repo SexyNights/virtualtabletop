@@ -357,7 +357,7 @@ function updateEmptyLibraryHint() {
   $('#emptyLibrary').style.display = isEmpty ? 'block' : 'none';
   if(isEmpty) {
     $('#emptyLibrary').innerHTML = hasPublicLibrary
-      ? 'ゲームリストには何も保存されていません。<br>公開ライブラリ内のゲームを選ぶか、画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。<br>公開ライブラリ内にあるゲームのサムネイル左上には☆マークがあります。この☆マークをクリックするとお気に入りとして登録されます'
+      ? 'ゲームリストには何も保存されていません。<br>公開ライブラリ内のゲームを選ぶか、画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。<br>公開ライブラリのサムネイル左上には☆マークがあります。この☆マークをクリックするとゲームリストに表示されます。'
       : 'ゲームリストには何も保存されていません。<br>画面右上の「ゲームを追加」ボタンを使うか、VTTファイルをここにドラッグしてください。';
   }
   $('#emptyLibraryByFilter').style.display = $('#statesList > div:nth-of-type(2) .visible.roomState') || isEmpty ? 'none' : 'block';
