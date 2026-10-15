@@ -112,6 +112,15 @@ function autosaveRooms() {
 }
 
 MinifyHTML().then(function(result) {
+  // 日本語版: 検索エンジンに登録させない
+  router.use(function(req, res, next) {
+    res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+    next();
+  });
+  router.get('/robots.txt', function(req, res) {
+    res.type('text/plain').send('User-agent: *\nDisallow: /\n');
+  });
+
   router.use('/', express.static(path.resolve() + '/client'));
 
   if(Config.get('adminURL')) {
