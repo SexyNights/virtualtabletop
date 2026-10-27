@@ -1464,3 +1464,8 @@ div:nth-of-type(2) > .list > .roomState .star {
     float: unset;
   }
 }
+
+/* 日本語版: 「ゲームを追加」画面の × ボタンを少し下げる（値を変えると位置を調整できる） */
+#stateAddOverlay > .titleWithCloseButton button, #variantAddOverlay > .titleWithCloseButton button {
+  top: 10px;
+}
